@@ -4,14 +4,6 @@
    ============================================= */
 
 /* NAV MOBILE */
-/* Desktop: nav ul always visible, never affected by .open */
-@media (min-width: 769px) {
-  nav ul { display: flex !important; }
-  .hamburger { display: none !important; }
-  .dropdown-menu { display: none; }
-  .nav-dropdown.open .dropdown-menu { display: flex; }
-}
-
 .hamburger {
   display: none;
   flex-direction: column;
@@ -20,6 +12,7 @@
   padding: 4px;
   background: none;
   border: none;
+  flex-shrink: 0;
 }
 .hamburger span {
   display: block;
@@ -32,15 +25,24 @@
 .hamburger.open span:nth-child(2) { opacity: 0; }
 .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
-@media (max-width: 768px) {
-
-  /* NAV */
-  nav {
-    padding: 1rem 1.25rem;
-    position: sticky;
-    top: 0;
-    z-index: 200;
+/* Desktop: nav always horizontal, hamburger hidden */
+@media (min-width: 769px) {
+  .hamburger { display: none !important; }
+  nav ul {
+    display: flex !important;
+    position: static !important;
+    flex-direction: row !important;
+    background: transparent !important;
+    border: none !important;
+    padding: 0 !important;
+    gap: 2rem !important;
   }
+  nav ul li a { padding: 0 !important; border: none !important; }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  nav { padding: 1rem 1.25rem; }
   .hamburger { display: flex; }
   nav ul {
     display: none;
@@ -54,18 +56,31 @@
     border-bottom: 1px solid var(--border);
     z-index: 199;
     padding: 0.5rem 0;
+    list-style: none;
   }
-  nav ul.open { display: flex !important; }
+  nav ul.open { display: flex; }
+  nav ul li { border-bottom: 1px solid var(--border); }
+  nav ul li:last-child { border-bottom: none; }
   nav ul li a {
-    display: block;
-    padding: 0.9rem 1.5rem;
-    font-size: 0.9rem;
-    border-bottom: 1px solid var(--border);
-    letter-spacing: 0.04em;
+    display: block !important;
+    padding: 0.9rem 1.5rem !important;
+    font-size: 0.9rem !important;
+    letter-spacing: 0.02em !important;
+    text-transform: none !important;
+    color: var(--black) !important;
+    border: none !important;
+    background: none !important;
   }
-  nav ul li:last-child a { border-bottom: none; margin: 0.5rem 1.25rem; text-align: center; }
+  nav ul li:last-child a {
+    background: var(--salmon) !important;
+    color: white !important;
+    margin: 0.5rem 1.25rem !important;
+    text-align: center !important;
+    border-radius: 2px !important;
+  }
 
-  /* HERO */
+/* HERO */
+
   .hero { grid-template-columns: 1fr; min-height: auto; }
   .hero-left { padding: 2.5rem 1.25rem; border-right: none; border-bottom: 1px solid var(--border); }
   .hero-right { padding: 2rem 1.25rem; }
