@@ -4,6 +4,14 @@
    ============================================= */
 
 /* NAV MOBILE */
+/* Desktop: nav ul always visible, never affected by .open */
+@media (min-width: 769px) {
+  nav ul { display: flex !important; }
+  .hamburger { display: none !important; }
+  .dropdown-menu { display: none; }
+  .nav-dropdown.open .dropdown-menu { display: flex; }
+}
+
 .hamburger {
   display: none;
   flex-direction: column;
@@ -47,7 +55,7 @@
     z-index: 199;
     padding: 0.5rem 0;
   }
-  nav ul.open { display: flex; }
+  nav ul.open { display: flex !important; }
   nav ul li a {
     display: block;
     padding: 0.9rem 1.5rem;
