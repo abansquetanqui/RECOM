@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Llistes curades — RECOM</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="mobile.css">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   :root { --salmon: #D95F3B; --salmon-light: #F7C9B8; --salmon-pale: #FDF0EB; --black: #111111; --white: #FFFFFF; --gray: #6B6B6B; --gray-light: #F5F5F3; --border: #E2E2DE; }
@@ -55,6 +56,9 @@
 <body>
 <nav>
   <a href="index.html" class="logo">RECO<span>M</span></a>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
   <ul>
     <li><a href="llibres.html">Llibres</a></li>
     <li><a href="musica.html">Música</a></li>
@@ -164,5 +168,13 @@
   <a href="index.html" class="footer-logo">RECO<span>M</span></a>
   <div class="footer-copy">Cultura catalana recomanada per persones reals · 2025</div>
 </footer>
+<script>
+  var btn = document.getElementById('hamburger');
+  var menu = document.querySelector('nav ul');
+  if(btn && menu){
+    btn.addEventListener('click', function(){ btn.classList.toggle('open'); menu.classList.toggle('open'); });
+    document.querySelectorAll('nav ul li a').forEach(function(a){ a.addEventListener('click', function(){ btn.classList.remove('open'); menu.classList.remove('open'); }); });
+  }
+</script>
 </body>
 </html>
