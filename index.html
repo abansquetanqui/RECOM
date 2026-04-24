@@ -397,12 +397,21 @@
     <span></span><span></span><span></span>
   </button>
   <ul>
-    <li><a href="llibres.html">Llibres</a></li>
-    <li><a href="musica.html">Música</a></li>
-    <li><a href="podcasts.html">Podcasts</a></li>
-    <li><a href="cinema.html">Cinema</a></li>
-    <li><a href="teatre.html">Teatre</a></li>
-    <li><a href="newsletter.html">Newsletter</a></li><li><a href="entra.html" class="btn-nav">Entra</a></li>
+    <li class="nav-dropdown">
+      <a href="#" class="nav-drop-toggle">Categories ▾</a>
+      <ul class="dropdown-menu">
+        <li><a href="llibres.html">📚 Llibres</a></li>
+        <li><a href="musica.html">🎵 Música</a></li>
+        <li><a href="podcasts.html">🎙️ Podcasts</a></li>
+        <li><a href="cinema.html">🎬 Cinema</a></li>
+        <li><a href="teatre.html">🎭 Teatre</a></li>
+      </ul>
+    </li>
+    <li><a href="novetats.html">Novetats</a></li>
+    <li><a href="llistes.html">Llistes</a></li>
+    <li><a href="newsletter.html">Newsletter</a></li>
+    <li><a href="qui-som.html">Qui som</a></li>
+    <li><a href="entra.html" class="btn-nav">Entra</a></li>
   </ul>
 </nav>
 
@@ -413,9 +422,9 @@
     <h1>Descobreix el que <em>val la pena</em> en català</h1>
     <p class="hero-desc">Llibres, música, podcasts, cinema i teatre recomanats per la comunitat catalanoparlant. Sense algorismes. Sense soroll.</p>
     <div class="hero-actions">
-      <a href="#" class="btn-primary">Comença ara</a>
-      <a href="#recomanacions" class="btn-ghost">Explora</a>
+      <a href="newsletter.html" class="btn-primary">Subscriu-te al newsletter →</a>
     </div>
+    <p style="font-size:0.78rem;color:var(--gray);margin-top:0.75rem;font-weight:300;">Cada dimarts, cinc recomanacions. Gratis.</p>
   </div>
   <div class="hero-right">
     <p class="hero-label">Trending avui</p>
@@ -460,23 +469,23 @@
 
 <!-- CATEGORIES -->
 <div class="categories" id="categories">
-  <a href="#" class="cat-item">
+  <a href="llibres.html" class="cat-item">
     <div class="cat-icon-wrap">📚</div>
     <div class="cat-name">Llibres</div>
   </a>
-  <a href="#" class="cat-item">
+  <a href="musica.html" class="cat-item">
     <div class="cat-icon-wrap">🎵</div>
     <div class="cat-name">Música</div>
   </a>
-  <a href="#" class="cat-item">
+  <a href="podcasts.html" class="cat-item">
     <div class="cat-icon-wrap">🎙️</div>
     <div class="cat-name">Podcasts</div>
   </a>
-  <a href="#" class="cat-item">
+  <a href="cinema.html" class="cat-item">
     <div class="cat-icon-wrap">🎬</div>
     <div class="cat-name">Cinema</div>
   </a>
-  <a href="#" class="cat-item">
+  <a href="teatre.html" class="cat-item">
     <div class="cat-icon-wrap">🎭</div>
     <div class="cat-name">Teatre</div>
   </a>
@@ -537,20 +546,20 @@
 <!-- STATS -->
 <div class="stats-strip">
   <div class="stat-item">
-    <span class="stat-num">2.4k</span>
-    <span class="stat-label">Recomanacions</span>
-  </div>
-  <div class="stat-item">
-    <span class="stat-num">890</span>
-    <span class="stat-label">Usuàries actives</span>
-  </div>
-  <div class="stat-item">
     <span class="stat-num">5</span>
     <span class="stat-label">Categories culturals</span>
   </div>
   <div class="stat-item">
     <span class="stat-num">100%</span>
     <span class="stat-label">En català</span>
+  </div>
+  <div class="stat-item">
+    <span class="stat-num">0€</span>
+    <span class="stat-label">Per accedir</span>
+  </div>
+  <div class="stat-item">
+    <span class="stat-num">∞</span>
+    <span class="stat-label">Coses per descobrir</span>
   </div>
 </div>
 
@@ -559,15 +568,15 @@
   <p class="manifesto-tag">Per què RECOM</p>
   <h2>La cultura en català <em>existeix.</em><br>Només cal saber on mirar.</h2>
   <p>Una plataforma feta per la comunitat, per ajudar-nos a trobar el que els algorismes mai ens mostraran.</p>
-  <a href="#" class="btn-white">Uneix-te a la comunitat</a>
+  <a href="entra.html" class="btn-white">Uneix-te a la comunitat</a>
 </section>
 
 <!-- FOOTER -->
 <footer>
   <a href="#" class="footer-logo">RECO<span>M</span></a>
   <div class="footer-links">
-    <a href="#">Sobre RECOM</a>
-    <a href="#">Contacte</a>
+    <a href="qui-som.html">Qui som</a>
+    <a href="qui-som.html#contacte">Contacte</a>
     <a href="#">Privacitat</a>
   </div>
   <div class="footer-copy">Cultura catalana recomanada per persones reals · 2025</div>
@@ -580,6 +589,20 @@
     btn.addEventListener('click', function(){ btn.classList.toggle('open'); menu.classList.toggle('open'); });
     document.querySelectorAll('nav ul li a').forEach(function(a){ a.addEventListener('click', function(){ btn.classList.remove('open'); menu.classList.remove('open'); }); });
   }
+</script>
+<script>
+  // Dropdown categories
+  document.querySelectorAll('.nav-dropdown').forEach(function(dd) {
+    dd.querySelector('.nav-drop-toggle').addEventListener('click', function(e) {
+      e.preventDefault();
+      dd.classList.toggle('open');
+    });
+  });
+  document.addEventListener('click', function(e) {
+    if (!e.target.closest('.nav-dropdown')) {
+      document.querySelectorAll('.nav-dropdown').forEach(function(dd){ dd.classList.remove('open'); });
+    }
+  });
 </script>
 </body>
 </html>

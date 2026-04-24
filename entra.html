@@ -53,11 +53,21 @@
     <span></span><span></span><span></span>
   </button>
   <ul>
-    <li><a href="llibres.html">Llibres</a></li>
-    <li><a href="musica.html">Música</a></li>
-    <li><a href="podcasts.html">Podcasts</a></li>
-    <li><a href="cinema.html">Cinema</a></li>
-    <li><a href="teatre.html">Teatre</a></li>
+    <li class="nav-dropdown">
+      <a href="#" class="nav-drop-toggle">Categories ▾</a>
+      <ul class="dropdown-menu">
+        <li><a href="llibres.html">📚 Llibres</a></li>
+        <li><a href="musica.html">🎵 Música</a></li>
+        <li><a href="podcasts.html">🎙️ Podcasts</a></li>
+        <li><a href="cinema.html">🎬 Cinema</a></li>
+        <li><a href="teatre.html">🎭 Teatre</a></li>
+      </ul>
+    </li>
+    <li><a href="novetats.html">Novetats</a></li>
+    <li><a href="llistes.html">Llistes</a></li>
+    <li><a href="newsletter.html">Newsletter</a></li>
+    <li><a href="qui-som.html">Qui som</a></li>
+    <li><a href="entra.html" class="btn-nav">Entra</a></li>
   </ul>
 </nav>
 <div class="auth-container">
@@ -108,6 +118,20 @@
     btn.addEventListener('click', function(){ btn.classList.toggle('open'); menu.classList.toggle('open'); });
     document.querySelectorAll('nav ul li a').forEach(function(a){ a.addEventListener('click', function(){ btn.classList.remove('open'); menu.classList.remove('open'); }); });
   }
+</script>
+<script>
+  // Dropdown categories
+  document.querySelectorAll('.nav-dropdown').forEach(function(dd) {
+    dd.querySelector('.nav-drop-toggle').addEventListener('click', function(e) {
+      e.preventDefault();
+      dd.classList.toggle('open');
+    });
+  });
+  document.addEventListener('click', function(e) {
+    if (!e.target.closest('.nav-dropdown')) {
+      document.querySelectorAll('.nav-dropdown').forEach(function(dd){ dd.classList.remove('open'); });
+    }
+  });
 </script>
 </body>
 </html>
