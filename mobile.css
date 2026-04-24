@@ -1,3 +1,17 @@
+
+/* Prevent horizontal overflow on mobile */
+html, body { overflow-x: hidden; max-width: 100%; }
+*, *::before, *::after { box-sizing: border-box; }
+
+
+/* Desktop: hide hamburger, show full nav */
+@media (min-width: 769px) {
+  .hamburger { display: none !important; }
+  nav > ul { display: flex !important; position: static !important; flex-direction: row !important; background: transparent !important; border: none !important; box-shadow: none !important; padding: 0 !important; gap: 2rem !important; }
+  nav > ul > li > a { padding: 0 !important; font-size: 0.82rem !important; }
+  nav > ul > li:last-child { padding: 0 !important; }
+}
+
 /* RECOM — Mobile & Responsive */
 
 /* === HAMBURGER (ocult per defecte en desktop) === */

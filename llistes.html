@@ -200,12 +200,10 @@
       t.closest('.nav-dropdown').classList.toggle('open');
     });
   });
-  document.addEventListener('click', function(e){
-    if(!e.target.closest('nav')){
-      if(btn) btn.classList.remove('open');
-      if(menu) menu.classList.remove('open');
-      document.querySelectorAll('.nav-dropdown').forEach(function(dd){ dd.classList.remove('open'); });
-    }
+  document.addEventListener('click', function(){
+    if(btn) btn.classList.remove('open');
+    if(menu) menu.classList.remove('open');
+    document.querySelectorAll('.nav-dropdown').forEach(function(dd){ dd.classList.remove('open'); });
   });
 })();
 </script>
