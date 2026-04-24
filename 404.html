@@ -86,24 +86,10 @@
     <li><a href="qui-som.html">Qui som</a></li>
     <li><a href="entra.html" class="btn-nav">Entra</a></li>
   </ul>
-    </li>
-    <li><a href="novetats.html">Novetats</a></li>
-    <li><a href="llistes.html">Llistes</a></li>
-    <li><a href="newsletter.html">Newsletter</a></li>
-    <li><a href="qui-som.html">Qui som</a></li>
-    <li><a href="entra.html" class="btn-nav">Entra</a></li>
-  </ul>
-    </li>
-    <li><a href="novetats.html">Novetats</a></li>
-    <li><a href="llistes.html">Llistes</a></li>
-    <li><a href="newsletter.html">Newsletter</a></li>
-    <li><a href="qui-som.html">Qui som</a></li>
-    <li><a href="entra.html" class="btn-nav">Entra</a></li>
-  </ul>
 </nav>
-  <button class="hamburger" id="hamburger" aria-label="Menu">
-    <span></span><span></span><span></span>
-  </button>
+<button class="hamburger" id="hamburger" aria-label="Menu">
+  <span></span><span></span><span></span>
+</button>
 
 <div class="not-found">
   <div class="big-num">404</div>
@@ -138,5 +124,23 @@
   <div class="footer-copy">Cultura catalana recomanada per persones reals · 2025</div>
 </footer>
 
+<script>
+  (function(){
+    var btn = document.getElementById('hamburger');
+    var menu = document.querySelector('nav > ul');
+    if(btn && menu){
+      btn.addEventListener('click', function(){ btn.classList.toggle('open'); menu.classList.toggle('open'); });
+      document.addEventListener('click', function(e){
+        if(!e.target.closest('nav') && !e.target.closest('.hamburger')){ btn.classList.remove('open'); menu.classList.remove('open'); }
+      });
+    }
+    document.querySelectorAll('.nav-dropdown').forEach(function(dd){
+      dd.querySelector('.nav-drop-toggle').addEventListener('click', function(e){ e.preventDefault(); dd.classList.toggle('open'); });
+    });
+    document.addEventListener('click', function(e){
+      if(!e.target.closest('.nav-dropdown')) document.querySelectorAll('.nav-dropdown').forEach(function(dd){ dd.classList.remove('open'); });
+    });
+  })();
+</script>
 </body>
 </html>
