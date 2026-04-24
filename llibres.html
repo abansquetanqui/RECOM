@@ -67,6 +67,12 @@
 
   @media(max-width:768px){ .books-grid { grid-template-columns: repeat(2, 1fr); gap: 1.25rem; } .grid-section { padding: 1.5rem 1.25rem; } }
   @media(max-width:480px){ .books-grid { grid-template-columns: repeat(2, 1fr); gap: 1rem; } }
+
+  @media (max-width: 768px) {
+    nav > ul { display: none !important; }
+    nav > ul.open { display: flex !important; }
+    .hamburger { display: flex !important; }
+  }
 </style>
 </head>
 <body>

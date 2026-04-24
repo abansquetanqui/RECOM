@@ -38,6 +38,12 @@
   .load-more { text-align: center; padding: 2rem; border-top: 1px solid var(--border); }
   .btn-more { background: transparent; border: 1px solid var(--black); color: var(--black); padding: 0.8rem 2.5rem; font-family: 'DM Sans', sans-serif; font-size: 0.85rem; cursor: pointer; border-radius: 2px; transition: all 0.2s; }
   .btn-more:hover { background: var(--salmon); border-color: var(--salmon); color: white; }
+
+  @media (max-width: 768px) {
+    nav > ul { display: none !important; }
+    nav > ul.open { display: flex !important; }
+    .hamburger { display: flex !important; }
+  }
 </style>
 </head>
 <body>

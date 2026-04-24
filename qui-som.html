@@ -53,6 +53,12 @@
   .footer-logo { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 900; color: var(--black); text-decoration: none; }
   .footer-logo span { color: var(--salmon); }
   .footer-copy { font-size: 0.75rem; color: var(--gray); }
+
+  @media (max-width: 768px) {
+    nav > ul { display: none !important; }
+    nav > ul.open { display: flex !important; }
+    .hamburger { display: flex !important; }
+  }
 </style>
 </head>
 <body>

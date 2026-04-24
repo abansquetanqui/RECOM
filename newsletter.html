@@ -88,6 +88,12 @@
   .footer-copy { font-size: 0.75rem; color: var(--gray); }
 
   .success-msg { display: none; font-size: 0.85rem; color: var(--salmon); margin-top: 0.75rem; font-weight: 500; }
+
+  @media (max-width: 768px) {
+    nav > ul { display: none !important; }
+    nav > ul.open { display: flex !important; }
+    .hamburger { display: flex !important; }
+  }
 </style>
 </head>
 <body>

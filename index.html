@@ -386,6 +386,12 @@
   .footer-links a { font-size: 0.78rem; color: var(--gray); text-decoration: none; }
   .footer-links a:hover { color: var(--salmon); }
   .footer-copy { font-size: 0.75rem; color: var(--gray); }
+
+  @media (max-width: 768px) {
+    nav > ul { display: none !important; }
+    nav > ul.open { display: flex !important; }
+    .hamburger { display: flex !important; }
+  }
 </style>
 </head>
 <body>
