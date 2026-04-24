@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Novetats — RECOM</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root { --salmon: #D95F3B; --salmon-light: #F7C9B8; --salmon-pale: #FDF0EB; --black: #111111; --white: #FFFFFF; --gray: #6B6B6B; --gray-light: #F5F5F3; --border: #E2E2DE; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--white); color: var(--black); }
+  nav { display: flex; justify-content: space-between; align-items: center; padding: 1.4rem 3rem; border-bottom: 1px solid var(--border); position: sticky; top: 0; background: var(--white); z-index: 100; }
+  .logo { font-family: 'Playfair Display', serif; font-size: 1.6rem; font-weight: 900; letter-spacing: -0.03em; color: var(--black); text-decoration: none; }
+  .logo span { color: var(--salmon); }
+  nav ul { list-style: none; display: flex; gap: 2rem; align-items: center; }
+  nav ul li a { font-size: 0.82rem; color: var(--gray); text-decoration: none; letter-spacing: 0.06em; text-transform: uppercase; transition: color 0.2s; }
+  nav ul li a:hover, nav ul li a.active { color: var(--salmon); }
+  .btn-nav { background: var(--salmon); color: white !important; padding: 0.5rem 1.3rem; border-radius: 2px; text-transform: none !important; letter-spacing: 0 !important; font-weight: 500 !important; }
+
+  .page-hero { padding: 4rem 3rem; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: flex-end; }
+  .page-hero-left .tag { font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--salmon); font-weight: 500; display: block; margin-bottom: 0.75rem; }
+  .page-hero-left h1 { font-family: 'Playfair Display', serif; font-size: clamp(2.4rem, 4vw, 3.5rem); font-weight: 900; letter-spacing: -0.03em; }
+  .page-hero-left p { font-size: 1rem; color: var(--gray); margin-top: 1rem; font-weight: 300; max-width: 480px; line-height: 1.7; }
+  .filters { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+  .filter-btn { background: transparent; border: 1px solid var(--border); color: var(--gray); padding: 0.45rem 1rem; font-family: 'DM Sans', sans-serif; font-size: 0.8rem; border-radius: 2px; cursor: pointer; transition: all 0.2s; }
+  .filter-btn:hover, .filter-btn.active { background: var(--salmon); border-color: var(--salmon); color: white; }
+
+  .featured { display: grid; grid-template-columns: 1fr 1fr; border-bottom: 1px solid var(--border); }
+  .featured-main { padding: 3rem; border-right: 1px solid var(--border); cursor: pointer; transition: background 0.15s; }
+  .featured-main:hover { background: var(--salmon-pale); }
+  .featured-badge { font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.1em; font-weight: 500; padding: 0.25rem 0.6rem; border-radius: 2px; background: var(--salmon); color: white; display: inline-block; margin-bottom: 1.25rem; }
+  .featured-main h2 { font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 900; line-height: 1.15; letter-spacing: -0.02em; margin-bottom: 0.5rem; }
+  .featured-main .author { font-size: 0.9rem; color: var(--gray); font-weight: 300; margin-bottom: 1rem; }
+  .featured-main .desc { font-size: 0.95rem; color: var(--gray); line-height: 1.7; font-weight: 300; }
+  .featured-main .meta { display: flex; gap: 0.5rem; align-items: center; margin-top: 1.5rem; }
+  .featured-main .stars { color: var(--salmon); }
+  .featured-main .count { font-size: 0.78rem; color: var(--gray); }
+  .new-pill { font-size: 0.65rem; background: #e8f8ee; color: #2a7a4a; padding: 0.2rem 0.5rem; border-radius: 2px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.08em; }
+
+  .featured-side { display: flex; flex-direction: column; }
+  .side-card { padding: 2rem; border-bottom: 1px solid var(--border); cursor: pointer; transition: background 0.15s; flex: 1; }
+  .side-card:last-child { border-bottom: none; }
+  .side-card:hover { background: var(--salmon-pale); }
+  .side-badge { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.1em; font-weight: 500; padding: 0.2rem 0.5rem; border-radius: 2px; background: var(--salmon-pale); color: var(--salmon); display: inline-block; margin-bottom: 0.75rem; }
+  .side-card h3 { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 700; margin-bottom: 0.25rem; }
+  .side-card .author { font-size: 0.8rem; color: var(--gray); font-weight: 300; margin-bottom: 0.5rem; }
+  .side-card .desc { font-size: 0.82rem; color: var(--gray); line-height: 1.6; font-weight: 300; }
+
+  .section { padding: 3rem; border-bottom: 1px solid var(--border); }
+  .section-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 2rem; }
+  .section-title { font-family: 'Playfair Display', serif; font-size: 1.6rem; font-weight: 700; letter-spacing: -0.02em; }
+  .section-link { font-size: 0.85rem; color: var(--salmon); text-decoration: none; font-weight: 500; }
+
+  .list-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); }
+  .list-card { background: var(--white); padding: 1.75rem; cursor: pointer; transition: background 0.15s; }
+  .list-card:hover { background: var(--salmon-pale); }
+  .list-badge { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.1em; font-weight: 500; padding: 0.22rem 0.55rem; border-radius: 2px; background: var(--salmon-pale); color: var(--salmon); display: inline-block; margin-bottom: 0.75rem; }
+  .list-card h3 { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; margin-bottom: 0.25rem; line-height: 1.3; }
+  .list-card .author { font-size: 0.78rem; color: var(--gray); font-weight: 300; margin-bottom: 0.5rem; }
+  .list-card .desc { font-size: 0.8rem; color: var(--gray); line-height: 1.6; font-weight: 300; }
+  .list-card .meta { display: flex; gap: 0.4rem; align-items: center; margin-top: 0.75rem; }
+  .list-card .stars { color: var(--salmon); font-size: 0.75rem; }
+  .list-card .count { font-size: 0.7rem; color: var(--gray); }
+
+  .agenda { padding: 3rem; border-bottom: 1px solid var(--border); }
+  .agenda-list { display: flex; flex-direction: column; }
+  .agenda-item { display: grid; grid-template-columns: 80px 1fr auto; gap: 1.5rem; align-items: center; padding: 1.25rem 0; border-bottom: 1px solid var(--border); }
+  .agenda-item:last-child { border-bottom: none; }
+  .agenda-date { text-align: center; }
+  .agenda-date .day { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 900; color: var(--salmon); line-height: 1; }
+  .agenda-date .month { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--gray); font-weight: 500; }
+  .agenda-info h3 { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; margin-bottom: 0.2rem; }
+  .agenda-info p { font-size: 0.82rem; color: var(--gray); font-weight: 300; }
+  .agenda-cat { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.1em; font-weight: 500; padding: 0.22rem 0.55rem; border-radius: 2px; background: var(--salmon-pale); color: var(--salmon); }
+
+  footer { padding: 2rem 3rem; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border); }
+  .footer-logo { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 900; color: var(--black); text-decoration: none; }
+  .footer-logo span { color: var(--salmon); }
+  .footer-copy { font-size: 0.75rem; color: var(--gray); }
+</style>
+</head>
+<body>
+<nav>
+  <a href="index.html" class="logo">RECO<span>M</span></a>
+  <ul>
+    <li><a href="llibres.html">Llibres</a></li>
+    <li><a href="musica.html">Música</a></li>
+    <li><a href="podcasts.html">Podcasts</a></li>
+    <li><a href="cinema.html">Cinema</a></li>
+    <li><a href="teatre.html">Teatre</a></li>
+    <li><a href="newsletter.html">Newsletter</a></li>
+    <li><a href="entra.html" class="btn-nav">Entra</a></li>
+  </ul>
+</nav>
+
+<div class="page-hero">
+  <div class="page-hero-left">
+    <span class="tag">✨ Novetats i estrenes</span>
+    <h1>Novetats</h1>
+    <p>Les últimes publicacions, estrenes i llançaments en català. Actualitzat cada setmana per la comunitat.</p>
+  </div>
+  <div class="filters">
+    <button class="filter-btn active">Tot</button>
+    <button class="filter-btn">Llibres</button>
+    <button class="filter-btn">Música</button>
+    <button class="filter-btn">Cinema</button>
+    <button class="filter-btn">Teatre</button>
+    <button class="filter-btn">Podcasts</button>
+  </div>
+</div>
+
+<!-- DESTACAT -->
+<div class="featured">
+  <div class="featured-main">
+    <span class="featured-badge">Novetat destacada</span>
+    <h2>Les veus del rierol</h2>
+    <div class="author">Irene Solà · Anagrama · Abril 2025</div>
+    <div class="desc">La nova novel·la d'Irene Solà arriba carregada d'expectatives i no decepciona. Una exploració lírica del paisatge català, la memòria i el cos que confirma l'autora com una de les veus més importants de la literatura catalana actual.</div>
+    <div class="meta">
+      <span class="stars">★★★★★</span>
+      <span class="count">4.9 · 87 lectures</span>
+      <span class="new-pill">Nou</span>
+    </div>
+  </div>
+  <div class="featured-side">
+    <div class="side-card">
+      <span class="side-badge">Música</span>
+      <h3>Deriva</h3>
+      <div class="author">Maria Arnal · Març 2025</div>
+      <div class="desc">Nou EP de Maria Arnal que explora territorials sonors nous. Cinc cançons que et deixen sense paraules.</div>
+    </div>
+    <div class="side-card">
+      <span class="side-badge">Cinema</span>
+      <h3>Pedra seca</h3>
+      <div class="author">Clara Sola · Febrer 2025</div>
+      <div class="desc">Documental sobre els pagesos de l'Alt Empordà que resisteixen la pressió immobiliària. Emocionant i necessari.</div>
+    </div>
+    <div class="side-card">
+      <span class="side-badge">Teatre</span>
+      <h3>La dona del tren</h3>
+      <div class="author">Teatre Lliure · Estrena abril 2025</div>
+      <div class="desc">Nova producció del Lliure amb text de Cristina Clemente. Ja s'estan acabant les entrades.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ÚLTIMES RECOMANACIONS -->
+<section class="section">
+  <div class="section-header">
+    <h2 class="section-title">Últimes recomanacions</h2>
+    <a href="#" class="section-link">Veure-les totes →</a>
+  </div>
+  <div class="list-grid">
+    <div class="list-card"><span class="list-badge">Llibre</span><h3>Temporada de cactus</h3><div class="author">Najat El Hachmi · 2025</div><div class="desc">La nova novel·la de l'escriptora amaziga en català. Identitat, feminisme i arrels.</div><div class="meta"><span class="stars">★★★★★</span><span class="count">4.8 · 43 lectures</span></div></div>
+    <div class="list-card"><span class="list-badge">Podcast</span><h3>Futur en Català #21</h3><div class="author">Podcast · Abril 2025</div><div class="desc">Episodi sobre la nova generació d'artistes catalans que trepen internacionalment sense renunciar a la llengua.</div><div class="meta"><span class="stars">★★★★☆</span><span class="count">4.6 · 120 escoltes</span></div></div>
+    <div class="list-card"><span class="list-badge">Música</span><h3>Cançons d'hivern</h3><div class="author">Sopa de Cabra · 2025</div><div class="desc">El retorn de Sopa de Cabra amb un àlbum intimista i madur. Han tornat millor que mai.</div><div class="meta"><span class="stars">★★★★★</span><span class="count">4.9 · 310 escoltes</span></div></div>
+    <div class="list-card"><span class="list-badge">Llibre</span><h3>Quan tot era possible</h3><div class="author">Empar Moliner · 2025</div><div class="desc">Humor, lucidesa i un retrat generacional que et fa riure i plorar a la vegada.</div><div class="meta"><span class="stars">★★★★☆</span><span class="count">4.5 · 67 lectures</span></div></div>
+    <div class="list-card"><span class="list-badge">Cinema</span><h3>Dies de mar</h3><div class="author">Carla Simón · 2025</div><div class="desc">La nova pel·lícula de Carla Simón manté la delicadesa visual que la caracteritza. Una joia.</div><div class="meta"><span class="stars">★★★★★</span><span class="count">4.8 · 95 vistes</span></div></div>
+    <div class="list-card"><span class="list-badge">Teatre</span><h3>Foc creuat</h3><div class="author">Sala Beckett · Març 2025</div><div class="desc">Thriller polític català en format teatral. Tensió des del primer minut fins al darrer.</div><div class="meta"><span class="stars">★★★★☆</span><span class="count">4.6 · 58 vistes</span></div></div>
+  </div>
+</section>
+
+<!-- AGENDA -->
+<section class="agenda">
+  <div class="section-header">
+    <h2 class="section-title">Agenda cultural</h2>
+    <a href="#" class="section-link">Veure agenda completa →</a>
+  </div>
+  <div class="agenda-list">
+    <div class="agenda-item">
+      <div class="agenda-date"><div class="day">23</div><div class="month">Abril</div></div>
+      <div class="agenda-info"><h3>Sant Jordi — Fira del Llibre de Barcelona</h3><p>Passeig de Gràcia · Tot el dia · Entrada lliure</p></div>
+      <span class="agenda-cat">Llibres</span>
+    </div>
+    <div class="agenda-item">
+      <div class="agenda-date"><div class="day">26</div><div class="month">Abril</div></div>
+      <div class="agenda-info"><h3>Concert Maria Arnal — Sala Apolo</h3><p>Barcelona · 21h · Entrades des de 18€</p></div>
+      <span class="agenda-cat">Música</span>
+    </div>
+    <div class="agenda-item">
+      <div class="agenda-date"><div class="day">02</div><div class="month">Maig</div></div>
+      <div class="agenda-info"><h3>Estrena «La dona del tren» — Teatre Lliure</h3><p>Montjuïc · 19:30h · Entrades des de 12€</p></div>
+      <span class="agenda-cat">Teatre</span>
+    </div>
+    <div class="agenda-item">
+      <div class="agenda-date"><div class="day">10</div><div class="month">Maig</div></div>
+      <div class="agenda-info"><h3>Fira Literal — Literatura independent</h3><p>Nau Bostik, Barcelona · Tot el cap de setmana</p></div>
+      <span class="agenda-cat">Llibres</span>
+    </div>
+    <div class="agenda-item">
+      <div class="agenda-date"><div class="day">17</div><div class="month">Maig</div></div>
+      <div class="agenda-info"><h3>Documental «Pedra seca» — Filmoteca de Catalunya</h3><p>Barcelona · 18h · Entrada lliure amb reserva</p></div>
+      <span class="agenda-cat">Cinema</span>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <a href="index.html" class="footer-logo">RECO<span>M</span></a>
+  <div class="footer-copy">Cultura catalana recomanada per persones reals · 2025</div>
+</footer>
+</body>
+</html>

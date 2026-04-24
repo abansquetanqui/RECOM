@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Qui som — RECOM</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root { --salmon: #D95F3B; --salmon-light: #F7C9B8; --salmon-pale: #FDF0EB; --black: #111111; --white: #FFFFFF; --gray: #6B6B6B; --gray-light: #F5F5F3; --border: #E2E2DE; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--white); color: var(--black); }
+  nav { display: flex; justify-content: space-between; align-items: center; padding: 1.4rem 3rem; border-bottom: 1px solid var(--border); position: sticky; top: 0; background: var(--white); z-index: 100; }
+  .logo { font-family: 'Playfair Display', serif; font-size: 1.6rem; font-weight: 900; letter-spacing: -0.03em; color: var(--black); text-decoration: none; }
+  .logo span { color: var(--salmon); }
+  nav ul { list-style: none; display: flex; gap: 2rem; align-items: center; }
+  nav ul li a { font-size: 0.82rem; color: var(--gray); text-decoration: none; letter-spacing: 0.06em; text-transform: uppercase; transition: color 0.2s; }
+  nav ul li a:hover, nav ul li a.active { color: var(--salmon); }
+  .btn-nav { background: var(--salmon); color: white !important; padding: 0.5rem 1.3rem; border-radius: 2px; text-transform: none !important; letter-spacing: 0 !important; font-weight: 500 !important; }
+
+  .page-header { padding: 5rem 3rem 4rem; border-bottom: 1px solid var(--border); max-width: 800px; }
+  .tag { font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--salmon); font-weight: 500; display: block; margin-bottom: 1rem; }
+  h1 { font-family: 'Playfair Display', serif; font-size: clamp(2.6rem, 4vw, 4rem); font-weight: 900; letter-spacing: -0.03em; line-height: 1.05; margin-bottom: 1.25rem; }
+  h1 em { font-style: italic; color: var(--salmon); }
+  .lead { font-size: 1.15rem; color: var(--gray); line-height: 1.75; font-weight: 300; max-width: 600px; }
+
+  .content { display: grid; grid-template-columns: 2fr 1fr; border-top: 1px solid var(--border); }
+  .main-text { padding: 4rem 3rem; border-right: 1px solid var(--border); }
+  .main-text p { font-size: 1rem; color: var(--gray); line-height: 1.85; font-weight: 300; margin-bottom: 1.5rem; }
+  .main-text p strong { color: var(--black); font-weight: 500; }
+  .pull-quote { border-left: 3px solid var(--salmon); padding: 1rem 1.5rem; margin: 2.5rem 0; }
+  .pull-quote p { font-family: 'Playfair Display', serif; font-size: 1.25rem; font-style: italic; color: var(--black); line-height: 1.5; margin: 0; }
+  h2 { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 700; margin: 2.5rem 0 1rem; }
+
+  .sidebar { padding: 4rem 2.5rem; }
+  .sidebar-block { margin-bottom: 2.5rem; padding-bottom: 2.5rem; border-bottom: 1px solid var(--border); }
+  .sidebar-block:last-child { border-bottom: none; }
+  .sidebar-label { font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--salmon); font-weight: 500; margin-bottom: 1rem; display: block; }
+  .sidebar-block p { font-size: 0.85rem; color: var(--gray); line-height: 1.7; font-weight: 300; }
+  .value-list { list-style: none; }
+  .value-list li { font-size: 0.85rem; color: var(--gray); padding: 0.5rem 0; border-bottom: 1px solid var(--border); font-weight: 300; display: flex; gap: 0.5rem; }
+  .value-list li:last-child { border-bottom: none; }
+  .value-list li::before { content: '→'; color: var(--salmon); flex-shrink: 0; }
+  .contact-link { display: block; font-size: 0.85rem; color: var(--salmon); text-decoration: none; margin-top: 0.75rem; font-weight: 500; }
+  .contact-link:hover { text-decoration: underline; }
+
+  .manifesto-strip { background: var(--salmon); padding: 4rem 3rem; text-align: center; }
+  .manifesto-strip h2 { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 3vw, 2.8rem); font-weight: 900; color: white; letter-spacing: -0.03em; margin-bottom: 0.75rem; }
+  .manifesto-strip h2 em { font-style: italic; color: rgba(255,255,255,0.75); }
+  .manifesto-strip p { font-size: 0.95rem; color: rgba(255,255,255,0.75); font-weight: 300; }
+
+  footer { padding: 2rem 3rem; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border); }
+  .footer-logo { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 900; color: var(--black); text-decoration: none; }
+  .footer-logo span { color: var(--salmon); }
+  .footer-copy { font-size: 0.75rem; color: var(--gray); }
+</style>
+</head>
+<body>
+<nav>
+  <a href="index.html" class="logo">RECO<span>M</span></a>
+  <ul>
+    <li><a href="llibres.html">Llibres</a></li>
+    <li><a href="musica.html">Música</a></li>
+    <li><a href="podcasts.html">Podcasts</a></li>
+    <li><a href="cinema.html">Cinema</a></li>
+    <li><a href="teatre.html">Teatre</a></li>
+    <li><a href="newsletter.html">Newsletter</a></li>
+    <li><a href="entra.html" class="btn-nav">Entra</a></li>
+  </ul>
+</nav>
+
+<div class="page-header">
+  <span class="tag">Sobre RECOM</span>
+  <h1>Fem visible la cultura <em>en català</em></h1>
+  <p class="lead">RECOM és una plataforma de recomanacions culturals feta per la comunitat catalanoparlant. Llibres, música, podcasts, cinema i teatre — tot en català, sense algorismes.</p>
+</div>
+
+<div class="content">
+  <div class="main-text">
+    <p>Vivim en un moment estrany. Mai havíem tingut accés a tanta cultura, i mai havia estat tan difícil trobar la cultura que realment ens interpel·la. Els algorismes de Spotify, Netflix o Goodreads no estan dissenyats per a nosaltres. <strong>Estan dissenyats per a mercats globals, i el català no és un mercat global.</strong></p>
+
+    <p>Però la cultura en català existeix. Existeix amb una força i una qualitat extraordinàries. Hi ha novel·listes que t'esquincen per dins, músics que reinventen el pop, podcasters que t'obren el cap, cineastes que et fan veure el país d'una altra manera. El problema no és la qualitat. El problema és la <strong>visibilitat</strong>.</p>
+
+    <div class="pull-quote">
+      <p>"La millor recomanació que mai rebràs no vindrà d'un algorisme. Vindrà d'una persona que ha llegit, escoltat i viscut el que et recomana."</p>
+    </div>
+
+    <p>RECOM neix d'aquesta convicció. Volem construir l'espai que no existeix: un lloc on la comunitat catalanoparlant pugui compartir el que l'ha emocionat, sorprès o transformat. Un Goodreads, un Letterboxd, un RateYourMusic — però <strong>fet des d'aquí, pensat des d'aquí, en la nostra llengua</strong>.</p>
+
+    <h2>Com funciona</h2>
+    <p>Qualsevol persona pot explorar les recomanacions sense registrar-se. Si vols participar — puntuar, comentar, afegir recomanacions pròpies o crear llistes — et pots registrar de manera gratuïta. No hi ha algoritme que decideixi què veus. El que apareix primer és el que la comunitat ha valorat millor.</p>
+
+    <h2>D'on venim</h2>
+    <p>RECOM va néixer el 2025 com un projecte petit i amb una idea clara: la cultura en català necessita un espai propi de descoberta. Som un equip petit, amb moltes ganes i poc pressupost, convençuts que <strong>les coses importants es construeixen a poc a poc, amb la comunitat al centre</strong>.</p>
+  </div>
+
+  <div class="sidebar">
+    <div class="sidebar-block">
+      <span class="sidebar-label">Els nostres valors</span>
+      <ul class="value-list">
+        <li>La llengua com a punt de partida</li>
+        <li>La comunitat per davant de l'algorisme</li>
+        <li>Qualitat per sobre de quantitat</li>
+        <li>Cultura de tot el territori</li>
+        <li>Accés obert i gratuït</li>
+      </ul>
+    </div>
+    <div class="sidebar-block">
+      <span class="sidebar-label">Xifres</span>
+      <p>Més de <strong style="color:var(--black)">2.400 recomanacions</strong>, <strong style="color:var(--black)">5 categories</strong> i una comunitat creixent de persones que estimen la cultura en català.</p>
+    </div>
+    <div class="sidebar-block">
+      <span class="sidebar-label">Contacte</span>
+      <p>Tens una idea, vols col·laborar o tens alguna pregunta?</p>
+      <a href="mailto:hola@recom.cat" class="contact-link">hola@recom.cat →</a>
+    </div>
+  </div>
+</div>
+
+<div class="manifesto-strip">
+  <h2>La cultura en català <em>existeix.</em></h2>
+  <p>Ajuda'ns a fer-la visible. Comparteix una recomanació avui.</p>
+</div>
+
+<footer>
+  <a href="index.html" class="footer-logo">RECO<span>M</span></a>
+  <div class="footer-copy">Cultura catalana recomanada per persones reals · 2025</div>
+</footer>
+</body>
+</html>
