@@ -62,6 +62,7 @@
 <body>
 <nav>
   <a href="index.html" class="logo">RECO<span>M</span></a>
+  
   <ul>
     <li class="nav-dropdown">
       <a href="#" class="nav-drop-toggle">Categories ▾</a>
@@ -80,9 +81,6 @@
     <li><a href="entra.html" class="btn-nav">Entra</a></li>
   </ul>
 </nav>
-<button class="hamburger" id="hamburger" aria-label="Menu">
-  <span></span><span></span><span></span>
-</button>
 
 <div class="page-hero">
   <span class="tag">📋 Llistes curades</span>
@@ -185,22 +183,31 @@
 
 
 <script>
-  (function(){
-    var btn = document.getElementById('hamburger');
-    var menu = document.querySelector('nav > ul');
-    if(btn && menu){
-      btn.addEventListener('click', function(){ btn.classList.toggle('open'); menu.classList.toggle('open'); });
-      document.addEventListener('click', function(e){
-        if(!e.target.closest('nav') && !e.target.closest('.hamburger')){ btn.classList.remove('open'); menu.classList.remove('open'); }
-      });
+(function(){
+  var btn = document.getElementById('hamburger');
+  var menu = document.querySelector('nav > ul');
+  if(btn && menu){
+    btn.addEventListener('click', function(e){
+      e.stopPropagation();
+      btn.classList.toggle('open');
+      menu.classList.toggle('open');
+    });
+  }
+  document.querySelectorAll('.nav-drop-toggle').forEach(function(t){
+    t.addEventListener('click', function(e){
+      e.preventDefault();
+      e.stopPropagation();
+      t.closest('.nav-dropdown').classList.toggle('open');
+    });
+  });
+  document.addEventListener('click', function(e){
+    if(!e.target.closest('nav')){
+      if(btn) btn.classList.remove('open');
+      if(menu) menu.classList.remove('open');
+      document.querySelectorAll('.nav-dropdown').forEach(function(dd){ dd.classList.remove('open'); });
     }
-    document.querySelectorAll('.nav-dropdown').forEach(function(dd){
-      dd.querySelector('.nav-drop-toggle').addEventListener('click', function(e){ e.preventDefault(); dd.classList.toggle('open'); });
-    });
-    document.addEventListener('click', function(e){
-      if(!e.target.closest('.nav-dropdown')) document.querySelectorAll('.nav-dropdown').forEach(function(dd){ dd.classList.remove('open'); });
-    });
-  })();
+  });
+})();
 </script>
 </body>
 </html>

@@ -2,16 +2,24 @@
    RECOM — Responsive / Mobile styles
    ============================================= */
 
-/* Hamburger: hidden by default (desktop) */
+/* ---- NAV MOBILE ---- */
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: nowrap;
+}
+
 .hamburger {
   display: none;
   flex-direction: column;
   gap: 5px;
   cursor: pointer;
-  padding: 4px;
+  padding: 6px 4px;
   background: none;
   border: none;
   flex-shrink: 0;
+  order: 3;
 }
 .hamburger span {
   display: block;
@@ -24,7 +32,62 @@
 .hamburger.open span:nth-child(2) { opacity: 0; }
 .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
-/* ---- DROPDOWN ---- */
+@media (max-width: 768px) {
+  .hamburger { display: flex; }
+
+  nav > ul {
+    display: none !important;
+    position: fixed;
+    top: 57px;
+    left: 0;
+    right: 0;
+    background: var(--white);
+    flex-direction: column;
+    gap: 0;
+    border-bottom: 2px solid var(--border);
+    z-index: 500;
+    padding: 0;
+    list-style: none;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    margin: 0;
+  }
+  nav > ul.open { display: flex !important; }
+  nav > ul > li { border-bottom: 1px solid var(--border); }
+  nav > ul > li > a {
+    display: block !important;
+    padding: 1rem 1.5rem !important;
+    font-size: 1rem !important;
+    letter-spacing: 0 !important;
+    text-transform: none !important;
+    color: var(--black) !important;
+    background: none !important;
+    border-radius: 0 !important;
+  }
+  nav > ul > li:last-child { border-bottom: none; padding: 0.75rem 1.25rem; }
+  nav > ul > li:last-child > a {
+    background: var(--salmon) !important;
+    color: white !important;
+    text-align: center !important;
+    border-radius: 2px !important;
+    padding: 0.85rem 1rem !important;
+  }
+
+  .nav-dropdown .dropdown-menu {
+    position: static !important;
+    transform: none !important;
+    display: none;
+    background: var(--gray-light);
+    border: none;
+    border-top: 1px solid var(--border);
+    padding: 0;
+    box-shadow: none;
+    min-width: 100%;
+  }
+  .nav-dropdown.open > .dropdown-menu { display: flex !important; }
+  .dropdown-menu li a { padding: 0.85rem 2rem !important; }
+}
+
+
 .nav-dropdown { position: relative; }
 .nav-drop-toggle { cursor: pointer; }
 .dropdown-menu {
@@ -56,12 +119,8 @@
 }
 .dropdown-menu li a:hover { color: var(--salmon) !important; background: var(--salmon-pale) !important; }
 
-/* ---- MOBILE ---- */
+
 @media (max-width: 768px) {
-  .hamburger { display: flex; }
-
-  nav { padding: 1rem 1.25rem; }
-
   nav > ul {
     display: none;
     position: fixed;
