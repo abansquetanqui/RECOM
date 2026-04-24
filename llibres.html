@@ -9,49 +9,69 @@
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   :root {
-    --salmon: #D95F3B; --salmon-mid: #E8845F; --salmon-light: #F7C9B8;
-    --salmon-pale: #FDF0EB; --black: #111111; --white: #FFFFFF;
-    --gray: #6B6B6B; --gray-light: #F5F5F3; --border: #E2E2DE;
+    --salmon: #D95F3B; --salmon-light: #F7C9B8; --salmon-pale: #FDF0EB;
+    --black: #111111; --white: #FFFFFF; --gray: #6B6B6B;
+    --gray-light: #F5F5F3; --border: #E2E2DE; --accent: #2D6A4F;
   }
-  html { scroll-behavior: smooth; }
-  body { font-family: 'DM Sans', sans-serif; background: var(--white); color: var(--black); overflow-x: hidden; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--white); color: var(--black); }
   nav { display: flex; justify-content: space-between; align-items: center; padding: 1.4rem 3rem; border-bottom: 1px solid var(--border); position: sticky; top: 0; background: var(--white); z-index: 100; }
   .logo { font-family: 'Playfair Display', serif; font-size: 1.6rem; font-weight: 900; letter-spacing: -0.03em; color: var(--black); text-decoration: none; }
   .logo span { color: var(--salmon); }
   nav ul { list-style: none; display: flex; gap: 2rem; align-items: center; }
-  nav ul li a { font-size: 0.82rem; font-weight: 400; color: var(--gray); text-decoration: none; letter-spacing: 0.06em; text-transform: uppercase; transition: color 0.2s; }
+  nav ul li a { font-size: 0.82rem; color: var(--gray); text-decoration: none; letter-spacing: 0.06em; text-transform: uppercase; transition: color 0.2s; }
   nav ul li a:hover, nav ul li a.active { color: var(--salmon); }
-  .btn-nav { background: var(--salmon); color: white !important; padding: 0.5rem 1.3rem; border-radius: 2px; font-weight: 500 !important; letter-spacing: 0 !important; text-transform: none !important; }
-  .btn-nav:hover { background: #c04f2e !important; }
-  .page-hero { border-bottom: 3px solid #2D6A4F;; padding: 4rem 3rem; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: flex-end; }
-  .page-hero-left .tag { color: var(--accent); font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--salmon); font-weight: 500; display: block; margin-bottom: 0.75rem; }
-  .page-hero-left h1 { font-family: 'Playfair Display', serif; font-size: clamp(2.4rem, 4vw, 3.5rem); font-weight: 900; letter-spacing: -0.03em; line-height: 1.05; }
-  .page-hero-left p { font-size: 1rem; color: var(--gray); margin-top: 1rem; font-weight: 300; max-width: 480px; line-height: 1.7; }
+  .btn-nav { background: var(--salmon); color: white !important; padding: 0.5rem 1.3rem; border-radius: 2px; text-transform: none !important; letter-spacing: 0 !important; font-weight: 500 !important; }
+  .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; background: none; border: none; }
+  .hamburger span { display: block; width: 22px; height: 2px; background: var(--black); transition: all 0.25s; }
+
+  .page-hero { padding: 3rem 3rem 2.5rem; border-bottom: 3px solid var(--accent); display: flex; justify-content: space-between; align-items: flex-end; }
+  .tag { font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); font-weight: 500; display: block; margin-bottom: 0.75rem; }
+  .page-hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(2.4rem, 4vw, 3.5rem); font-weight: 900; letter-spacing: -0.03em; }
+  .page-hero p { font-size: 1rem; color: var(--gray); margin-top: 0.75rem; font-weight: 300; max-width: 480px; line-height: 1.7; }
   .filters { display: flex; gap: 0.5rem; flex-wrap: wrap; }
   .filter-btn { background: transparent; border: 1px solid var(--border); color: var(--gray); padding: 0.45rem 1rem; font-family: 'DM Sans', sans-serif; font-size: 0.8rem; border-radius: 2px; cursor: pointer; transition: all 0.2s; }
   .filter-btn:hover, .filter-btn.active { background: var(--accent); border-color: var(--accent); color: white; }
+
   .grid-section { padding: 3rem; }
-  .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); }
-  .card { background: var(--white); padding: 1.75rem; cursor: pointer; transition: background 0.15s; display: flex; flex-direction: column; }
-  .card:hover { background: var(--salmon-pale); }
-  .card-badge { font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.1em; font-weight: 500; padding: 0.25rem 0.6rem; border-radius: 2px; display: inline-block; background: var(--salmon-pale); color: var(--salmon); margin-bottom: 1rem; align-self: flex-start; }
-  .card h3 { font-family: 'Playfair Display', serif; font-size: 1.05rem; font-weight: 700; line-height: 1.3; margin-bottom: 0.3rem; }
-  .card .author { font-size: 0.8rem; color: var(--gray); font-weight: 300; margin-bottom: 0.75rem; }
-  .card .desc { font-size: 0.82rem; color: var(--gray); line-height: 1.6; font-weight: 300; flex: 1; }
-  .card .meta { display: flex; align-items: center; gap: 0.5rem; margin-top: 1rem; }
-  .card .stars { color: var(--salmon); font-size: 0.78rem; }
-  .card .count { font-size: 0.72rem; color: var(--gray); }
-  .load-more { display: block; text-align: center; padding: 2rem; border-top: 1px solid var(--border); }
+  .books-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; }
+
+  .book-card { cursor: pointer; transition: transform 0.2s; }
+  .book-card:hover { transform: translateY(-4px); }
+  .book-cover {
+    width: 100%; aspect-ratio: 2/3; border-radius: 3px;
+    overflow: hidden; margin-bottom: 1rem; position: relative;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+  }
+  .book-cover img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .cover-placeholder {
+    width: 100%; height: 100%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Playfair Display', serif; font-size: 2.5rem; font-weight: 900;
+    color: white; letter-spacing: -0.02em;
+  }
+  .book-badge { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.1em; font-weight: 500; padding: 0.2rem 0.55rem; border-radius: 2px; background: #e8f4ee; color: var(--accent); display: inline-block; margin-bottom: 0.5rem; }
+  .book-title { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; line-height: 1.3; margin-bottom: 0.2rem; }
+  .book-author { font-size: 0.8rem; color: var(--gray); font-weight: 300; margin-bottom: 0.5rem; }
+  .book-meta { display: flex; align-items: center; gap: 0.4rem; }
+  .stars { color: var(--salmon); font-size: 0.75rem; }
+  .count { font-size: 0.72rem; color: var(--gray); }
+
+  .load-more { text-align: center; padding: 2rem; border-top: 1px solid var(--border); }
   .btn-more { background: transparent; border: 1px solid var(--black); color: var(--black); padding: 0.8rem 2.5rem; font-family: 'DM Sans', sans-serif; font-size: 0.85rem; cursor: pointer; border-radius: 2px; transition: all 0.2s; }
-  .btn-more:hover { background: var(--salmon); border-color: var(--salmon); color: white; }
+  .btn-more:hover { background: var(--accent); border-color: var(--accent); color: white; }
+
+  footer { padding: 2rem 3rem; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border); }
+  .footer-logo { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 900; color: var(--black); text-decoration: none; }
+  .footer-logo span { color: var(--salmon); }
+  .footer-copy { font-size: 0.75rem; color: var(--gray); }
+
+  @media(max-width:768px){ .books-grid { grid-template-columns: repeat(2, 1fr); gap: 1.25rem; } .grid-section { padding: 1.5rem 1.25rem; } }
+  @media(max-width:480px){ .books-grid { grid-template-columns: repeat(2, 1fr); gap: 1rem; } }
 </style>
 </head>
 <body>
 <nav>
   <a href="index.html" class="logo">RECO<span>M</span></a>
-    <button class="hamburger" id="hamburger" aria-label="Menu">
-    <span></span><span></span><span></span>
-  </button>
   <ul>
     <li class="nav-dropdown">
       <a href="#" class="nav-drop-toggle">Categories ▾</a>
@@ -69,14 +89,11 @@
     <li><a href="qui-som.html">Qui som</a></li>
     <li><a href="entra.html" class="btn-nav">Entra</a></li>
   </ul>
-    </li>
-    <li><a href="novetats.html">Novetats</a></li>
-    <li><a href="llistes.html">Llistes</a></li>
-    <li><a href="newsletter.html">Newsletter</a></li>
-    <li><a href="qui-som.html">Qui som</a></li>
-    <li><a href="entra.html" class="btn-nav">Entra</a></li>
-  </ul>
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
+
 <div class="page-hero">
   <div class="page-hero-left">
     <span class="tag">📚 Llibres en català</span>
@@ -84,47 +101,158 @@
     <p>Novel·les, assaig, poesia i còmics recomanats per la comunitat. Tot en català.</p>
   </div>
   <div class="filters">
-    <button class="filter-btn active">Tots</button>
-    <button class="filter-btn">Novel·la</button>
-    <button class="filter-btn">Assaig</button>
-    <button class="filter-btn">Poesia</button>
-    <button class="filter-btn">Infantil</button>
-    <button class="filter-btn">Còmic</button>
+    <button class="filter-btn active" onclick="filterBooks('tot', this)">Tots</button>
+    <button class="filter-btn" onclick="filterBooks('novella', this)">Novel·la</button>
+    <button class="filter-btn" onclick="filterBooks('assaig', this)">Assaig</button>
+    <button class="filter-btn" onclick="filterBooks('poesia', this)">Poesia</button>
+    <button class="filter-btn" onclick="filterBooks('infantil', this)">Infantil</button>
   </div>
 </div>
+
 <div class="grid-section">
-  <div class="grid">
-    <div class="card"><span class="card-badge">Novel·la</span><h3>La plaça del Diamant</h3><div class="author">Mercè Rodoreda</div><div class="desc">Una novel·la que travessa el temps. La Colometa et quedarà per sempre.</div><div class="meta"><span class="stars">★★★★★</span><span class="count">4.9 · 1.2k lectures</span></div></div>
-    <div class="card"><span class="card-badge">Novel·la</span><h3>Victus</h3><div class="author">Albert Sánchez Piñol</div><div class="desc">L'epopeia de la caiguda de Barcelona el 1714. Aventura i història a parts iguals.</div><div class="meta"><span class="stars">★★★★★</span><span class="count">4.8 · 980 lectures</span></div></div>
-    <div class="card"><span class="card-badge">Novel·la</span><h3>Solitud</h3><div class="author">Víctor Català</div><div class="desc">La gran novel·la modernista catalana. Natura, dona i llibertat en estat pur.</div><div class="meta"><span class="stars">★★★★☆</span><span class="count">4.5 · 560 lectures</span></div></div>
-    <div class="card"><span class="card-badge">Assaig</span><h3>El dia que va morir Franco</h3><div class="author">Víctor Alba</div><div class="desc">Crònica personal i política d'un moment que va canviar-ho tot.</div><div class="meta"><span class="stars">★★★★☆</span><span class="count">4.4 · 320 lectures</span></div></div>
-    <div class="card"><span class="card-badge">Poesia</span><h3>Cant Espiritual</h3><div class="author">Joan Maragall</div><div class="desc">El poema més important de la literatura catalana moderna. Llegiu-lo en veu alta.</div><div class="meta"><span class="stars">★★★★★</span><span class="count">4.9 · 740 lectures</span></div></div>
-    <div class="card"><span class="card-badge">Novel·la</span><h3>Incerta glòria</h3><div class="author">Joan Sales</div><div class="desc">La guerra civil catalana des de dins. Brutal i necessària.</div><div class="meta"><span class="stars">★★★★★</span><span class="count">4.8 · 870 lectures</span></div></div>
-    <div class="card"><span class="card-badge">Infantil</span><h3>En Cames-Llargues</h3><div class="author">Jean Webster</div><div class="desc">Clàssic universal en traducció catalana exemplar. Per a totes les edats.</div><div class="meta"><span class="stars">★★★★☆</span><span class="count">4.3 · 410 lectures</span></div></div>
-    <div class="card"><span class="card-badge">Assaig</span><h3>Nosaltres, els valencians</h3><div class="author">Joan Fuster</div><div class="desc">Assaig fundacional que redefineix la identitat dels Països Catalans.</div><div class="meta"><span class="stars">★★★★★</span><span class="count">4.7 · 630 lectures</span></div></div>
+  <div class="books-grid" id="booksGrid">
+
+    <div class="book-card" data-cat="novella">
+      <div class="book-cover">
+        <img data-isbn="9788429765267" src="" alt="La plaça del Diamant" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="cover-placeholder" style="background:#2D6A4F;display:none">P</div>
+      </div>
+      <span class="book-badge">Novel·la</span>
+      <div class="book-title">La plaça del Diamant</div>
+      <div class="book-author">Mercè Rodoreda</div>
+      <div class="book-meta"><span class="stars">★★★★★</span><span class="count">4.9 · 1.2k</span></div>
+    </div>
+
+    <div class="book-card" data-cat="novella">
+      <div class="book-cover">
+        <img data-isbn="9788499306087" src="" alt="Victus" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="cover-placeholder" style="background:#3A7D6E;display:none">V</div>
+      </div>
+      <span class="book-badge">Novel·la</span>
+      <div class="book-title">Victus</div>
+      <div class="book-author">Albert Sánchez Piñol</div>
+      <div class="book-meta"><span class="stars">★★★★★</span><span class="count">4.8 · 980</span></div>
+    </div>
+
+    <div class="book-card" data-cat="novella">
+      <div class="book-cover">
+        <img data-isbn="9788466407748" src="" alt="Solitud" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="cover-placeholder" style="background:#1A5276;display:none">S</div>
+      </div>
+      <span class="book-badge">Novel·la</span>
+      <div class="book-title">Solitud</div>
+      <div class="book-author">Víctor Català</div>
+      <div class="book-meta"><span class="stars">★★★★☆</span><span class="count">4.5 · 560</span></div>
+    </div>
+
+    <div class="book-card" data-cat="novella">
+      <div class="book-cover">
+        <img data-isbn="9788473291927" src="" alt="Incerta glòria" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="cover-placeholder" style="background:#6C3483;display:none">I</div>
+      </div>
+      <span class="book-badge">Novel·la</span>
+      <div class="book-title">Incerta glòria</div>
+      <div class="book-author">Joan Sales</div>
+      <div class="book-meta"><span class="stars">★★★★★</span><span class="count">4.8 · 870</span></div>
+    </div>
+
+    <div class="book-card" data-cat="assaig">
+      <div class="book-cover">
+        <img data-isbn="9788484377528" src="" alt="Nosaltres els valencians" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="cover-placeholder" style="background:#784212;display:none">N</div>
+      </div>
+      <span class="book-badge">Assaig</span>
+      <div class="book-title">Nosaltres, els valencians</div>
+      <div class="book-author">Joan Fuster</div>
+      <div class="book-meta"><span class="stars">★★★★★</span><span class="count">4.7 · 630</span></div>
+    </div>
+
+    <div class="book-card" data-cat="assaig">
+      <div class="book-cover">
+        <img data-isbn="9788418289095" src="" alt="Allò que ens pertany" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="cover-placeholder" style="background:#1A3A4A;display:none">A</div>
+      </div>
+      <span class="book-badge">Assaig</span>
+      <div class="book-title">Allò que ens pertany</div>
+      <div class="book-author">Marina Garcés</div>
+      <div class="book-meta"><span class="stars">★★★★★</span><span class="count">4.8 · 410</span></div>
+    </div>
+
+    <div class="book-card" data-cat="poesia">
+      <div class="book-cover">
+        <img data-isbn="9788475884141" src="" alt="Cant Espiritual" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="cover-placeholder" style="background:#922B21;display:none">C</div>
+      </div>
+      <span class="book-badge">Poesia</span>
+      <div class="book-title">Cant Espiritual</div>
+      <div class="book-author">Joan Maragall</div>
+      <div class="book-meta"><span class="stars">★★★★★</span><span class="count">4.9 · 740</span></div>
+    </div>
+
+    <div class="book-card" data-cat="novella">
+      <div class="book-cover">
+        <img data-isbn="9788416588459" src="" alt="Les veus del rierol" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="cover-placeholder" style="background:#2E7D32;display:none">L</div>
+      </div>
+      <span class="book-badge">Novel·la · Novetat</span>
+      <div class="book-title">Les veus del rierol</div>
+      <div class="book-author">Irene Solà</div>
+      <div class="book-meta"><span class="stars">★★★★★</span><span class="count">4.9 · 87</span></div>
+    </div>
+
   </div>
   <div class="load-more"><button class="btn-more">Carrega més llibres</button></div>
 </div>
+
+<footer>
+  <a href="index.html" class="footer-logo">RECO<span>M</span></a>
+  <div class="footer-copy">Cultura catalana recomanada per persones reals · 2025</div>
+</footer>
+
 <script>
-  var btn = document.getElementById('hamburger');
-  var menu = document.querySelector('nav ul');
-  if(btn && menu){
-    btn.addEventListener('click', function(){ btn.classList.toggle('open'); menu.classList.toggle('open'); });
-    document.querySelectorAll('nav ul li a').forEach(function(a){ a.addEventListener('click', function(){ btn.classList.remove('open'); menu.classList.remove('open'); }); });
-  }
-</script>
-<script>
-  // Dropdown categories
-  document.querySelectorAll('.nav-dropdown').forEach(function(dd) {
-    dd.querySelector('.nav-drop-toggle').addEventListener('click', function(e) {
-      e.preventDefault();
-      dd.classList.toggle('open');
-    });
+  // Load covers from Google Books API
+  document.querySelectorAll('img[data-isbn]').forEach(function(img) {
+    var isbn = img.getAttribute('data-isbn');
+    fetch('https://www.googleapis.com/books/v1/volumes?q=isbn:' + isbn)
+      .then(function(r){ return r.json(); })
+      .then(function(data){
+        if(data.items && data.items[0].volumeInfo.imageLinks) {
+          var url = data.items[0].volumeInfo.imageLinks.thumbnail || data.items[0].volumeInfo.imageLinks.smallThumbnail;
+          url = url.replace('http://', 'https://').replace('&edge=curl','');
+          img.src = url;
+          img.style.display = 'block';
+          img.nextElementSibling.style.display = 'none';
+        } else {
+          img.style.display = 'none';
+          img.nextElementSibling.style.display = 'flex';
+        }
+      })
+      .catch(function(){
+        img.style.display = 'none';
+        img.nextElementSibling.style.display = 'flex';
+      });
   });
-  document.addEventListener('click', function(e) {
-    if (!e.target.closest('.nav-dropdown')) {
-      document.querySelectorAll('.nav-dropdown').forEach(function(dd){ dd.classList.remove('open'); });
-    }
+
+  // Filter
+  function filterBooks(cat, btn) {
+    document.querySelectorAll('.filter-btn').forEach(function(b){ b.classList.remove('active'); });
+    btn.classList.add('active');
+    document.querySelectorAll('.book-card').forEach(function(card){
+      card.style.display = (cat === 'tot' || card.dataset.cat === cat) ? 'block' : 'none';
+    });
+  }
+
+  // Nav hamburger
+  var hbtn = document.getElementById('hamburger');
+  var hmenu = document.querySelector('nav ul');
+  if(hbtn && hmenu){
+    hbtn.addEventListener('click', function(){ hbtn.classList.toggle('open'); hmenu.classList.toggle('open'); });
+  }
+  document.querySelectorAll('.nav-dropdown').forEach(function(dd){
+    dd.querySelector('.nav-drop-toggle').addEventListener('click', function(e){ e.preventDefault(); dd.classList.toggle('open'); });
+  });
+  document.addEventListener('click', function(e){
+    if(!e.target.closest('.nav-dropdown')) document.querySelectorAll('.nav-dropdown').forEach(function(dd){ dd.classList.remove('open'); });
   });
 </script>
 </body>

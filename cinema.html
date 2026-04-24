@@ -38,6 +38,16 @@
   .load-more { text-align: center; padding: 2rem; border-top: 1px solid var(--border); }
   .btn-more { background: transparent; border: 1px solid var(--black); color: var(--black); padding: 0.8rem 2.5rem; font-family: 'DM Sans', sans-serif; font-size: 0.85rem; cursor: pointer; border-radius: 2px; transition: all 0.2s; }
   .btn-more:hover { background: var(--salmon); border-color: var(--salmon); color: white; }
+
+  .cinema-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; }
+  .cinema-card { cursor: pointer; transition: transform 0.2s; }
+  .cinema-card:hover { transform: translateY(-4px); }
+  .poster-cover { width: 100%; aspect-ratio: 2/3; border-radius: 3px; margin-bottom: 0.85rem; display: flex; align-items: center; justify-content: center; font-size: 2.5rem; box-shadow: 0 4px 16px rgba(0,0,0,0.2); }
+  .cinema-badge { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.1em; font-weight: 500; padding: 0.2rem 0.55rem; border-radius: 2px; background: #fdf0eb; color: var(--salmon); display: inline-block; margin-bottom: 0.4rem; }
+  .cinema-title { font-family: 'Playfair Display', serif; font-size: 0.95rem; font-weight: 700; line-height: 1.3; margin-bottom: 0.15rem; }
+  .cinema-author { font-size: 0.78rem; color: var(--gray); font-weight: 300; margin-bottom: 0.4rem; }
+  .cinema-meta { display: flex; align-items: center; gap: 0.4rem; }
+  @media(max-width:768px){ .cinema-grid { grid-template-columns: repeat(2, 1fr); } }
 </style>
 </head>
 <body>
@@ -85,17 +95,72 @@
     <button class="filter-btn">Animació</button>
   </div>
 </div>
-<div class="grid-section">
-  <div class="grid">
-    <div class="card"><span class="card-badge">Drama</span><h3>Pa negre</h3><div class="author">Agustí Villaronga · 2010</div><div class="desc">Postguerra catalana en tota la seva cruesa. Cinema que no s'oblida mai.</div><div class="meta"><span class="stars">★★★★★</span><span class="count">4.9 · 743 vistes</span></div></div>
-    <div class="card"><span class="card-badge">Documental</span><h3>El ventre del mar</h3><div class="author">Àgata Pons · 2021</div><div class="desc">Un documental sobre migració i Mediterrani que remou la consciència.</div><div class="meta"><span class="stars">★★★★★</span><span class="count">4.8 · 520 vistes</span></div></div>
-    <div class="card"><span class="card-badge">Drama</span><h3>Flores de otro mundo</h3><div class="author">Icíar Bollaín · 1999</div><div class="desc">Drama rural sobre identitat i arrels. En català i castellà, imprescindible.</div><div class="meta"><span class="stars">★★★★☆</span><span class="count">4.5 · 390 vistes</span></div></div>
-    <div class="card"><span class="card-badge">Comèdia</span><h3>Agàpit se'n va a la guerra</h3><div class="author">Ventura Pons · 1970</div><div class="desc">La comèdia catalana per excel·lència. Clàssic que envelleix amb elegància.</div><div class="meta"><span class="stars">★★★★☆</span><span class="count">4.3 · 280 vistes</span></div></div>
-    <div class="card"><span class="card-badge">Documental</span><h3>Sílvia Comes</h3><div class="author">Carles Balagué · 2019</div><div class="desc">Retrat d'una actriu catalana i la seva relació amb la llengua i el teatre.</div><div class="meta"><span class="stars">★★★★★</span><span class="count">4.7 · 310 vistes</span></div></div>
-    <div class="card"><span class="card-badge">Drama</span><h3>El mar</h3><div class="author">Agustí Villaronga · 2000</div><div class="desc">Postguerra, adolescència i culpa. Un dels films catalans més pertorbadors.</div><div class="meta"><span class="stars">★★★★★</span><span class="count">4.8 · 460 vistes</span></div></div>
-    <div class="card"><span class="card-badge">Animació</span><h3>El petit vampir</h3><div class="author">Diversos · doblatge català</div><div class="desc">Per a qui va créixer amb el doblatge català. Un clàssic generacional.</div><div class="meta"><span class="stars">★★★★☆</span><span class="count">4.4 · 620 vistes</span></div></div>
-    <div class="card"><span class="card-badge">Documental</span><h3>Dies d'agost</h3><div class="author">Marc Recha · 2006</div><div class="desc">Road movie catalana d'una bellesa inusual. Per veure a poc a poc.</div><div class="meta"><span class="stars">★★★★☆</span><span class="count">4.3 · 240 vistes</span></div></div>
-  </div>
+  <div class="grid-section">
+    <div class="cinema-grid">
+      <div class="cinema-card">
+        <div class="poster-cover" style="background: linear-gradient(160deg, #1A1A2E, #16213E);">🎬</div>
+        <span class="cinema-badge">Drama</span>
+        <div class="cinema-title">Pa negre</div>
+        <div class="cinema-author">Agustí Villaronga · 2010</div>
+        <div class="cinema-meta"><span class="stars" style="color:var(--salmon)">★★★★★</span><span style="font-size:0.72rem;color:var(--gray)">4.9 · 743</span></div>
+      </div>
+
+      <div class="cinema-card">
+        <div class="poster-cover" style="background: linear-gradient(160deg, #0D3B66, #1A6B8A);">🌊</div>
+        <span class="cinema-badge">Documental</span>
+        <div class="cinema-title">El ventre del mar</div>
+        <div class="cinema-author">Àgata Pons · 2021</div>
+        <div class="cinema-meta"><span class="stars" style="color:var(--salmon)">★★★★★</span><span style="font-size:0.72rem;color:var(--gray)">4.8 · 520</span></div>
+      </div>
+
+      <div class="cinema-card">
+        <div class="poster-cover" style="background: linear-gradient(160deg, #2D6A4F, #40916C);">🌿</div>
+        <span class="cinema-badge">Drama</span>
+        <div class="cinema-title">Flores de otro mundo</div>
+        <div class="cinema-author">Icíar Bollaín · 1999</div>
+        <div class="cinema-meta"><span class="stars" style="color:var(--salmon)">★★★★☆</span><span style="font-size:0.72rem;color:var(--gray)">4.5 · 390</span></div>
+      </div>
+
+      <div class="cinema-card">
+        <div class="poster-cover" style="background: linear-gradient(160deg, #4A235A, #7D3C98);">🎭</div>
+        <span class="cinema-badge">Comèdia</span>
+        <div class="cinema-title">Agàpit se'n va a la guerra</div>
+        <div class="cinema-author">Ventura Pons · 1970</div>
+        <div class="cinema-meta"><span class="stars" style="color:var(--salmon)">★★★★☆</span><span style="font-size:0.72rem;color:var(--gray)">4.3 · 280</span></div>
+      </div>
+
+      <div class="cinema-card">
+        <div class="poster-cover" style="background: linear-gradient(160deg, #8B6914, #C9A227);">🌅</div>
+        <span class="cinema-badge">Documental</span>
+        <div class="cinema-title">Dies d'agost</div>
+        <div class="cinema-author">Marc Recha · 2006</div>
+        <div class="cinema-meta"><span class="stars" style="color:var(--salmon)">★★★★☆</span><span style="font-size:0.72rem;color:var(--gray)">4.3 · 240</span></div>
+      </div>
+
+      <div class="cinema-card">
+        <div class="poster-cover" style="background: linear-gradient(160deg, #922B21, #CB4335);">🌊</div>
+        <span class="cinema-badge">Drama</span>
+        <div class="cinema-title">El mar</div>
+        <div class="cinema-author">Agustí Villaronga · 2000</div>
+        <div class="cinema-meta"><span class="stars" style="color:var(--salmon)">★★★★★</span><span style="font-size:0.72rem;color:var(--gray)">4.8 · 460</span></div>
+      </div>
+
+      <div class="cinema-card">
+        <div class="poster-cover" style="background: linear-gradient(160deg, #1A3A4A, #2C5F6E);">🎨</div>
+        <span class="cinema-badge">Documental</span>
+        <div class="cinema-title">Pedra seca</div>
+        <div class="cinema-author">Clara Sola · 2025</div>
+        <div class="cinema-meta"><span class="stars" style="color:var(--salmon)">★★★★★</span><span style="font-size:0.72rem;color:var(--gray)">4.8 · 95</span></div>
+      </div>
+
+      <div class="cinema-card">
+        <div class="poster-cover" style="background: linear-gradient(160deg, #6B3FA0, #9B59B6);">🌸</div>
+        <span class="cinema-badge">Drama</span>
+        <div class="cinema-title">Dies de mar</div>
+        <div class="cinema-author">Carla Simón · 2025</div>
+        <div class="cinema-meta"><span class="stars" style="color:var(--salmon)">★★★★★</span><span style="font-size:0.72rem;color:var(--gray)">4.8 · 95</span></div>
+      </div>
+    </div>
   <div class="load-more"><button class="btn-more">Carrega més cinema</button></div>
 </div>
 <script>

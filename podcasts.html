@@ -38,6 +38,16 @@
   .load-more { display: block; text-align: center; padding: 2rem; border-top: 1px solid var(--border); }
   .btn-more { background: transparent; border: 1px solid var(--black); color: var(--black); padding: 0.8rem 2.5rem; font-family: 'DM Sans', sans-serif; font-size: 0.85rem; cursor: pointer; border-radius: 2px; transition: all 0.2s; }
   .btn-more:hover { background: var(--salmon); border-color: var(--salmon); color: white; }
+
+  .pod-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+  .pod-card { cursor: pointer; transition: transform 0.2s; display: flex; flex-direction: column; align-items: center; text-align: center; }
+  .pod-card:hover { transform: translateY(-4px); }
+  .pod-cover { width: 100%; aspect-ratio: 1/1; border-radius: 12px; margin-bottom: 1rem; display: flex; align-items: center; justify-content: center; font-size: 2.5rem; box-shadow: 0 4px 16px rgba(0,0,0,0.12); }
+  .pod-badge { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.1em; font-weight: 500; padding: 0.2rem 0.55rem; border-radius: 2px; background: #e8f4f8; color: #1A6B8A; display: inline-block; margin-bottom: 0.4rem; }
+  .pod-title { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; line-height: 1.3; margin-bottom: 0.15rem; }
+  .pod-author { font-size: 0.78rem; color: var(--gray); font-weight: 300; margin-bottom: 0.4rem; }
+  .pod-meta { display: flex; align-items: center; gap: 0.4rem; justify-content: center; }
+  @media(max-width:768px){ .pod-grid { grid-template-columns: repeat(2, 1fr); } }
 </style>
 </head>
 <body>
@@ -86,15 +96,56 @@
     <button class="filter-btn">Activisme</button>
   </div>
 </div>
-<div class="grid-section">
-  <div class="grid">
-    <div class="card"><span class="card-badge">Cultura</span><h3>La Lectora</h3><div class="author">Podcast independent</div><div class="desc">Recomanacions literàries setmanals amb passió i criteri. El podcast de llibres de referència en català.</div><div class="meta"><span class="stars">★★★★★</span><span class="count">4.9 · 1.5k escoltes</span></div></div>
-    <div class="card"><span class="card-badge">Cultura</span><h3>El Suplement</h3><div class="author">Catalunya Ràdio</div><div class="desc">Cultura, actualitat i bon humor cada dissabte al matí. Ja és un clàssic.</div><div class="meta"><span class="stars">★★★★☆</span><span class="count">4.6 · 890 escoltes</span></div></div>
-    <div class="card"><span class="card-badge">Activisme</span><h3>Feminisme per a principiants</h3><div class="author">Mireia Puig</div><div class="desc">Activisme, teoria feminista i molt de sentit comú. Imprescindible per entendre el present.</div><div class="meta"><span class="stars">★★★★★</span><span class="count">4.7 · 1.2k escoltes</span></div></div>
-    <div class="card"><span class="card-badge">Ciència</span><h3>Mètode Científic</h3><div class="author">IEC</div><div class="desc">Ciència rigorosa i accessible en català. Per entendre el món sense renunciar a la llengua.</div><div class="meta"><span class="stars">★★★★★</span><span class="count">4.8 · 730 escoltes</span></div></div>
-    <div class="card"><span class="card-badge">Política</span><h3>La Mosca Cojonera</h3><div class="author">Podcast independent</div><div class="desc">Anàlisi política catalana sense filtres ni eufemismes. Per als que volen entendre de debò.</div><div class="meta"><span class="stars">★★★★☆</span><span class="count">4.4 · 560 escoltes</span></div></div>
-    <div class="card"><span class="card-badge">Humor</span><h3>El Món a RAC1</h3><div class="author">RAC1</div><div class="desc">Humor i actualitat catalana de primera hora. La ràdio que es fa escoltar.</div><div class="meta"><span class="stars">★★★★★</span><span class="count">4.7 · 2.1k escoltes</span></div></div>
-  </div>
+  <div class="grid-section">
+    <div class="pod-grid">
+      <div class="pod-card">
+        <div class="pod-cover" style="background: linear-gradient(135deg, #1A6B8A, #2E86AB);">🎙️</div>
+        <span class="pod-badge">Cultura</span>
+        <div class="pod-title">La Lectora</div>
+        <div class="pod-author">Podcast independent</div>
+        <div class="pod-meta"><span class="stars" style="color:var(--salmon)">★★★★★</span><span style="font-size:0.72rem;color:var(--gray)">4.9 · 1.5k</span></div>
+      </div>
+
+      <div class="pod-card">
+        <div class="pod-cover" style="background: linear-gradient(135deg, #2D6A4F, #40916C);">📻</div>
+        <span class="pod-badge">Cultura</span>
+        <div class="pod-title">El Suplement</div>
+        <div class="pod-author">Catalunya Ràdio</div>
+        <div class="pod-meta"><span class="stars" style="color:var(--salmon)">★★★★☆</span><span style="font-size:0.72rem;color:var(--gray)">4.6 · 890</span></div>
+      </div>
+
+      <div class="pod-card">
+        <div class="pod-cover" style="background: linear-gradient(135deg, #922B21, #CB4335);">✊</div>
+        <span class="pod-badge">Activisme</span>
+        <div class="pod-title">Feminisme per a principiants</div>
+        <div class="pod-author">Mireia Puig</div>
+        <div class="pod-meta"><span class="stars" style="color:var(--salmon)">★★★★★</span><span style="font-size:0.72rem;color:var(--gray)">4.7 · 1.2k</span></div>
+      </div>
+
+      <div class="pod-card">
+        <div class="pod-cover" style="background: linear-gradient(135deg, #1A3A4A, #2C5F6E);">🔬</div>
+        <span class="pod-badge">Ciència</span>
+        <div class="pod-title">Mètode Científic</div>
+        <div class="pod-author">IEC</div>
+        <div class="pod-meta"><span class="stars" style="color:var(--salmon)">★★★★★</span><span style="font-size:0.72rem;color:var(--gray)">4.8 · 730</span></div>
+      </div>
+
+      <div class="pod-card">
+        <div class="pod-cover" style="background: linear-gradient(135deg, #4A235A, #7D3C98);">🗞️</div>
+        <span class="pod-badge">Política</span>
+        <div class="pod-title">La Mosca Cojonera</div>
+        <div class="pod-author">Podcast independent</div>
+        <div class="pod-meta"><span class="stars" style="color:var(--salmon)">★★★★☆</span><span style="font-size:0.72rem;color:var(--gray)">4.4 · 560</span></div>
+      </div>
+
+      <div class="pod-card">
+        <div class="pod-cover" style="background: linear-gradient(135deg, #8B6914, #C9A227);">😄</div>
+        <span class="pod-badge">Humor</span>
+        <div class="pod-title">El Món a RAC1</div>
+        <div class="pod-author">RAC1</div>
+        <div class="pod-meta"><span class="stars" style="color:var(--salmon)">★★★★★</span><span style="font-size:0.72rem;color:var(--gray)">4.7 · 2.1k</span></div>
+      </div>
+    </div>
   <div class="load-more"><button class="btn-more">Carrega més podcasts</button></div>
 </div>
 <script>
