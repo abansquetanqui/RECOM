@@ -183,7 +183,6 @@
   white-space: nowrap;
 }
 .dropdown-menu li a:hover { color: var(--salmon) !important; background: var(--salmon-pale); }
-.nav-dropdown:hover .dropdown-menu,
 .nav-dropdown.open .dropdown-menu { display: flex; }
 
 @media (max-width: 768px) {
