@@ -37,13 +37,13 @@
 
   .book-card { cursor: pointer; transition: transform 0.2s; }
   .book-card:hover { transform: translateY(-4px); }
-  .book-cover {
+  .book-cover { position: relative; display: flex; align-items: center; justify-content: center;
     width: 100%; aspect-ratio: 2/3; border-radius: 3px;
     overflow: hidden; margin-bottom: 1rem; position: relative;
     box-shadow: 0 4px 16px rgba(0,0,0,0.12);
   }
   .book-cover img { width: 100%; height: 100%; object-fit: cover; display: block; }
-  .cover-placeholder {
+  .cover-placeholder { position: relative; z-index: 1;
     width: 100%; height: 100%;
     display: flex; align-items: center; justify-content: center;
     font-family: 'Playfair Display', serif; font-size: 2.5rem; font-weight: 900;
@@ -116,9 +116,12 @@
 <div class="grid-section">
   <div class="books-grid" id="booksGrid">
     <div class="book-card" data-cat="novella">
-      <div class="book-cover">
-        <img src="https://covers.openlibrary.org/b/isbn/9788429765267-L.jpg" alt="La plaça del Diamant" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-        <div class="cover-placeholder" style="background:#2D6A4F;display:none">P</div>
+      <div class="book-cover" style="background:#2D6A4F">
+        <div class="cover-placeholder">P</div>
+        <img src="https://upload.wikimedia.org/wikipedia/ca/thumb/7/73/La_pla%C3%A7a_del_diamant.jpg/220px-La_pla%C3%A7a_del_diamant.jpg" alt="La plaça del Diamant" loading="lazy"
+             onload="this.style.opacity='1';this.previousElementSibling.style.display='none'"
+             onerror="this.style.display='none'"
+             style="opacity:0;transition:opacity 0.3s;position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover">
       </div>
       <span class="book-badge">Novel·la</span>
       <div class="book-title">La plaça del Diamant</div>
@@ -126,9 +129,12 @@
       <div class="book-meta"><span class="stars">★★★★★</span><span class="count">4.9 · 1.2k</span></div>
     </div>
     <div class="book-card" data-cat="novella">
-      <div class="book-cover">
-        <img src="https://covers.openlibrary.org/b/isbn/9788499306087-L.jpg" alt="Victus" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-        <div class="cover-placeholder" style="background:#3A7D6E;display:none">V</div>
+      <div class="book-cover" style="background:#3A7D6E">
+        <div class="cover-placeholder">V</div>
+        <img src="https://covers.openlibrary.org/b/isbn/9788499309545-L.jpg" alt="Victus" loading="lazy"
+             onload="this.style.opacity='1';this.previousElementSibling.style.display='none'"
+             onerror="this.style.display='none'"
+             style="opacity:0;transition:opacity 0.3s;position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover">
       </div>
       <span class="book-badge">Novel·la</span>
       <div class="book-title">Victus</div>
@@ -136,9 +142,12 @@
       <div class="book-meta"><span class="stars">★★★★★</span><span class="count">4.8 · 980</span></div>
     </div>
     <div class="book-card" data-cat="novella">
-      <div class="book-cover">
-        <img src="https://covers.openlibrary.org/b/isbn/9788466407748-L.jpg" alt="Solitud" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-        <div class="cover-placeholder" style="background:#1A5276;display:none">S</div>
+      <div class="book-cover" style="background:#1A5276">
+        <div class="cover-placeholder">S</div>
+        <img src="https://covers.openlibrary.org/b/olid/OL7353244M-L.jpg" alt="Solitud" loading="lazy"
+             onload="this.style.opacity='1';this.previousElementSibling.style.display='none'"
+             onerror="this.style.display='none'"
+             style="opacity:0;transition:opacity 0.3s;position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover">
       </div>
       <span class="book-badge">Novel·la</span>
       <div class="book-title">Solitud</div>
@@ -146,9 +155,12 @@
       <div class="book-meta"><span class="stars">★★★★☆</span><span class="count">4.5 · 560</span></div>
     </div>
     <div class="book-card" data-cat="novella">
-      <div class="book-cover">
-        <img src="https://covers.openlibrary.org/b/isbn/9788473291927-L.jpg" alt="Incerta glòria" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-        <div class="cover-placeholder" style="background:#6C3483;display:none">I</div>
+      <div class="book-cover" style="background:#6C3483">
+        <div class="cover-placeholder">I</div>
+        <img src="https://covers.openlibrary.org/b/isbn/9788473291927-L.jpg" alt="Incerta glòria" loading="lazy"
+             onload="this.style.opacity='1';this.previousElementSibling.style.display='none'"
+             onerror="this.style.display='none'"
+             style="opacity:0;transition:opacity 0.3s;position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover">
       </div>
       <span class="book-badge">Novel·la</span>
       <div class="book-title">Incerta glòria</div>
@@ -156,9 +168,12 @@
       <div class="book-meta"><span class="stars">★★★★★</span><span class="count">4.8 · 870</span></div>
     </div>
     <div class="book-card" data-cat="assaig">
-      <div class="book-cover">
-        <img src="https://covers.openlibrary.org/b/isbn/9788484377528-L.jpg" alt="Nosaltres, els valencians" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-        <div class="cover-placeholder" style="background:#784212;display:none">N</div>
+      <div class="book-cover" style="background:#784212">
+        <div class="cover-placeholder">N</div>
+        <img src="https://covers.openlibrary.org/b/isbn/9788484377528-L.jpg" alt="Nosaltres, els valencians" loading="lazy"
+             onload="this.style.opacity='1';this.previousElementSibling.style.display='none'"
+             onerror="this.style.display='none'"
+             style="opacity:0;transition:opacity 0.3s;position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover">
       </div>
       <span class="book-badge">Assaig</span>
       <div class="book-title">Nosaltres, els valencians</div>
@@ -166,9 +181,12 @@
       <div class="book-meta"><span class="stars">★★★★★</span><span class="count">4.7 · 630</span></div>
     </div>
     <div class="book-card" data-cat="assaig">
-      <div class="book-cover">
-        <img src="https://covers.openlibrary.org/b/isbn/9788418289095-L.jpg" alt="Allò que ens pertany" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-        <div class="cover-placeholder" style="background:#1A3A4A;display:none">A</div>
+      <div class="book-cover" style="background:#1A3A4A">
+        <div class="cover-placeholder">A</div>
+        <img src="https://covers.openlibrary.org/b/isbn/9788418289095-L.jpg" alt="Allò que ens pertany" loading="lazy"
+             onload="this.style.opacity='1';this.previousElementSibling.style.display='none'"
+             onerror="this.style.display='none'"
+             style="opacity:0;transition:opacity 0.3s;position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover">
       </div>
       <span class="book-badge">Assaig</span>
       <div class="book-title">Allò que ens pertany</div>
@@ -176,9 +194,12 @@
       <div class="book-meta"><span class="stars">★★★★★</span><span class="count">4.8 · 410</span></div>
     </div>
     <div class="book-card" data-cat="poesia">
-      <div class="book-cover">
-        <img src="https://covers.openlibrary.org/b/isbn/9788475884141-L.jpg" alt="Cant Espiritual" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-        <div class="cover-placeholder" style="background:#922B21;display:none">C</div>
+      <div class="book-cover" style="background:#922B21">
+        <div class="cover-placeholder">C</div>
+        <img src="https://covers.openlibrary.org/b/isbn/9788475884141-L.jpg" alt="Cant Espiritual" loading="lazy"
+             onload="this.style.opacity='1';this.previousElementSibling.style.display='none'"
+             onerror="this.style.display='none'"
+             style="opacity:0;transition:opacity 0.3s;position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover">
       </div>
       <span class="book-badge">Poesia</span>
       <div class="book-title">Cant Espiritual</div>
@@ -186,9 +207,12 @@
       <div class="book-meta"><span class="stars">★★★★★</span><span class="count">4.9 · 740</span></div>
     </div>
     <div class="book-card" data-cat="novella">
-      <div class="book-cover">
-        <img src="https://covers.openlibrary.org/b/isbn/9788416677887-L.jpg" alt="Les veus del rierol" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-        <div class="cover-placeholder" style="background:#2E7D32;display:none">L</div>
+      <div class="book-cover" style="background:#2E7D32">
+        <div class="cover-placeholder">L</div>
+        <img src="https://upload.wikimedia.org/wikipedia/ca/thumb/8/8e/Canto_io_e_il_mio_mondo_gira.jpg/220px-Canto_io_e_il_mio_mondo_gira.jpg" alt="Les veus del rierol" loading="lazy"
+             onload="this.style.opacity='1';this.previousElementSibling.style.display='none'"
+             onerror="this.style.display='none'"
+             style="opacity:0;transition:opacity 0.3s;position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover">
       </div>
       <span class="book-badge">Novel·la · Novetat</span>
       <div class="book-title">Les veus del rierol</div>
