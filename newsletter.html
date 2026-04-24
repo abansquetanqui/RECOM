@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Newsletter — RECOM</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root { --salmon: #D95F3B; --salmon-mid: #E8845F; --salmon-light: #F7C9B8; --salmon-pale: #FDF0EB; --black: #111111; --white: #FFFFFF; --gray: #6B6B6B; --gray-light: #F5F5F3; --border: #E2E2DE; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--white); color: var(--black); overflow-x: hidden; }
+  nav { display: flex; justify-content: space-between; align-items: center; padding: 1.4rem 3rem; border-bottom: 1px solid var(--border); position: sticky; top: 0; background: var(--white); z-index: 100; }
+  .logo { font-family: 'Playfair Display', serif; font-size: 1.6rem; font-weight: 900; letter-spacing: -0.03em; color: var(--black); text-decoration: none; }
+  .logo span { color: var(--salmon); }
+  nav ul { list-style: none; display: flex; gap: 2rem; align-items: center; }
+  nav ul li a { font-size: 0.82rem; font-weight: 400; color: var(--gray); text-decoration: none; letter-spacing: 0.06em; text-transform: uppercase; transition: color 0.2s; }
+  nav ul li a:hover { color: var(--salmon); }
+  .btn-nav { background: var(--salmon); color: white !important; padding: 0.5rem 1.3rem; border-radius: 2px; font-weight: 500 !important; letter-spacing: 0 !important; text-transform: none !important; }
+
+  /* HERO */
+  .hero { display: grid; grid-template-columns: 1fr 1fr; min-height: 70vh; border-bottom: 1px solid var(--border); }
+  .hero-left { padding: 5rem 3.5rem; display: flex; flex-direction: column; justify-content: center; border-right: 1px solid var(--border); }
+  .tag { font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--salmon); font-weight: 500; display: block; margin-bottom: 1.25rem; }
+  h1 { font-family: 'Playfair Display', serif; font-size: clamp(2.4rem, 4vw, 3.6rem); font-weight: 900; line-height: 1.06; letter-spacing: -0.03em; margin-bottom: 1.25rem; }
+  h1 em { font-style: italic; color: var(--salmon); }
+  .hero-desc { font-size: 1rem; color: var(--gray); line-height: 1.75; max-width: 400px; margin-bottom: 2rem; font-weight: 300; }
+  .subscribe-form { display: flex; gap: 0; max-width: 420px; }
+  .subscribe-form input { flex: 1; padding: 0.9rem 1.1rem; border: 1px solid var(--border); border-right: none; border-radius: 2px 0 0 2px; font-family: 'DM Sans', sans-serif; font-size: 0.9rem; outline: none; transition: border-color 0.2s; }
+  .subscribe-form input:focus { border-color: var(--salmon); }
+  .subscribe-form input::placeholder { color: #bbb; }
+  .subscribe-form button { background: var(--salmon); color: white; border: none; padding: 0.9rem 1.5rem; font-family: 'DM Sans', sans-serif; font-size: 0.85rem; font-weight: 500; cursor: pointer; border-radius: 0 2px 2px 0; white-space: nowrap; transition: background 0.2s; }
+  .subscribe-form button:hover { background: #c04f2e; }
+  .form-note { font-size: 0.75rem; color: var(--gray); margin-top: 0.75rem; font-weight: 300; }
+  .hero-right { background: var(--salmon-pale); padding: 3rem; display: flex; flex-direction: column; justify-content: center; gap: 1rem; }
+
+  /* PREVIEW CARD (simula un número) */
+  .preview-label { font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--salmon); font-weight: 500; margin-bottom: 0.5rem; }
+  .issue-card { background: var(--white); border: 1px solid var(--salmon-light); border-radius: 3px; overflow: hidden; }
+  .issue-header { background: var(--salmon); padding: 1.25rem 1.5rem; }
+  .issue-header .issue-num { font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.7); margin-bottom: 0.3rem; }
+  .issue-header h3 { font-family: 'Playfair Display', serif; font-size: 1.15rem; font-weight: 700; color: white; line-height: 1.25; }
+  .issue-body { padding: 1.25rem 1.5rem; }
+  .issue-item { display: flex; gap: 0.75rem; align-items: flex-start; padding: 0.6rem 0; border-bottom: 1px solid var(--border); }
+  .issue-item:last-child { border-bottom: none; }
+  .issue-cat { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--salmon); font-weight: 500; flex-shrink: 0; padding-top: 2px; width: 55px; }
+  .issue-title { font-size: 0.85rem; font-weight: 500; color: var(--black); line-height: 1.4; }
+  .issue-author { font-size: 0.75rem; color: var(--gray); font-weight: 300; }
+
+  /* QUÈ TROBARÀS */
+  .features { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+  .feature { background: var(--white); padding: 2.5rem 2rem; }
+  .feature-icon { font-size: 1.5rem; margin-bottom: 1rem; display: block; }
+  .feature h3 { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 700; margin-bottom: 0.5rem; }
+  .feature p { font-size: 0.85rem; color: var(--gray); line-height: 1.65; font-weight: 300; }
+
+  /* ARXIU */
+  .section { padding: 4rem 3rem; border-bottom: 1px solid var(--border); }
+  .section-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 2rem; }
+  .section-title { font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 700; letter-spacing: -0.02em; }
+  .archive-list { display: flex; flex-direction: column; }
+  .archive-item { display: flex; align-items: center; justify-content: space-between; padding: 1.25rem 0; border-bottom: 1px solid var(--border); cursor: pointer; transition: background 0.15s; }
+  .archive-item:last-child { border-bottom: none; }
+  .archive-item:hover .archive-title { color: var(--salmon); }
+  .archive-left { display: flex; gap: 1.5rem; align-items: baseline; }
+  .archive-num { font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--salmon); font-weight: 500; min-width: 60px; }
+  .archive-title { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; transition: color 0.2s; }
+  .archive-date { font-size: 0.78rem; color: var(--gray); font-weight: 300; }
+  .archive-tags { display: flex; gap: 0.4rem; }
+  .archive-tag { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.08em; padding: 0.2rem 0.5rem; background: var(--salmon-pale); color: var(--salmon); border-radius: 2px; font-weight: 500; }
+
+  /* CTA FINAL */
+  .cta-final { background: var(--black); padding: 5rem 3rem; text-align: center; }
+  .cta-final .tag { color: rgba(255,255,255,0.5); margin-bottom: 1rem; display: block; }
+  .cta-final h2 { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 3vw, 2.8rem); font-weight: 900; color: white; letter-spacing: -0.03em; margin-bottom: 1rem; }
+  .cta-final h2 em { color: var(--salmon); font-style: italic; }
+  .cta-final p { font-size: 0.95rem; color: rgba(255,255,255,0.6); margin-bottom: 2rem; font-weight: 300; }
+  .subscribe-form-dark { display: flex; gap: 0; max-width: 400px; margin: 0 auto; }
+  .subscribe-form-dark input { flex: 1; padding: 0.9rem 1.1rem; border: 1px solid rgba(255,255,255,0.15); border-right: none; border-radius: 2px 0 0 2px; font-family: 'DM Sans', sans-serif; font-size: 0.9rem; outline: none; background: rgba(255,255,255,0.08); color: white; }
+  .subscribe-form-dark input::placeholder { color: rgba(255,255,255,0.35); }
+  .subscribe-form-dark input:focus { border-color: var(--salmon); }
+  .subscribe-form-dark button { background: var(--salmon); color: white; border: none; padding: 0.9rem 1.5rem; font-family: 'DM Sans', sans-serif; font-size: 0.85rem; font-weight: 500; cursor: pointer; border-radius: 0 2px 2px 0; white-space: nowrap; transition: background 0.2s; }
+  .subscribe-form-dark button:hover { background: #c04f2e; }
+
+  footer { padding: 2rem 3rem; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border); }
+  .footer-logo { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 900; color: var(--black); text-decoration: none; }
+  .footer-logo span { color: var(--salmon); }
+  .footer-copy { font-size: 0.75rem; color: var(--gray); }
+
+  .success-msg { display: none; font-size: 0.85rem; color: var(--salmon); margin-top: 0.75rem; font-weight: 500; }
+</style>
+</head>
+<body>
+<nav>
+  <a href="index.html" class="logo">RECO<span>M</span></a>
+  <ul>
+    <li><a href="llibres.html">Llibres</a></li>
+    <li><a href="musica.html">Música</a></li>
+    <li><a href="podcasts.html">Podcasts</a></li>
+    <li><a href="cinema.html">Cinema</a></li>
+    <li><a href="teatre.html">Teatre</a></li>
+    <li><a href="entra.html" class="btn-nav">Entra</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <span class="tag">📬 Newsletter setmanal</span>
+    <h1>Cultura catalana a la teva <em>safata d'entrada</em></h1>
+    <p class="hero-desc">Cada dimarts, cinc recomanacions curades: un llibre, un disc, un podcast, una pel·lícula i una obra de teatre. Res de soroll, tot de qualitat.</p>
+    <div class="subscribe-form">
+      <input type="email" id="email1" placeholder="tu@exemple.cat">
+      <button onclick="subscribe('email1', 'msg1')">Subscriu-me</button>
+    </div>
+    <div class="success-msg" id="msg1">✓ Perfecte! Et veurem el proper dimarts.</div>
+    <p class="form-note">Gratuït. Sense spam. Cancel·la quan vulguis.</p>
+  </div>
+  <div class="hero-right">
+    <p class="preview-label">Últim número · #012</p>
+    <div class="issue-card">
+      <div class="issue-header">
+        <div class="issue-num">RECOM · Número 012 · 22 abril 2025</div>
+        <h3>Cinc coses que no pots deixar passar aquest abril</h3>
+      </div>
+      <div class="issue-body">
+        <div class="issue-item">
+          <span class="issue-cat">Llibre</span>
+          <div><div class="issue-title">Incerta glòria</div><div class="issue-author">Joan Sales</div></div>
+        </div>
+        <div class="issue-item">
+          <span class="issue-cat">Música</span>
+          <div><div class="issue-title">Microscopi</div><div class="issue-author">Manel</div></div>
+        </div>
+        <div class="issue-item">
+          <span class="issue-cat">Podcast</span>
+          <div><div class="issue-title">La Lectora #48</div><div class="issue-author">Podcast independent</div></div>
+        </div>
+        <div class="issue-item">
+          <span class="issue-cat">Cinema</span>
+          <div><div class="issue-title">Pa negre</div><div class="issue-author">Agustí Villaronga</div></div>
+        </div>
+        <div class="issue-item">
+          <span class="issue-cat">Teatre</span>
+          <div><div class="issue-title">El retaule del flautista</div><div class="issue-author">Jordi Teixidor · TNC</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- QUÈ TROBARÀS -->
+<div class="features">
+  <div class="feature">
+    <span class="feature-icon">📖</span>
+    <h3>Una recomanació per categoria</h3>
+    <p>Cada número porta una recomanació de llibre, música, podcast, cinema i teatre. Cinc coses concretes, curades amb criteri.</p>
+  </div>
+  <div class="feature">
+    <span class="feature-icon">🗣️</span>
+    <h3>Veus de la comunitat</h3>
+    <p>Cada número inclou una recomanació escrita per algú de la comunitat RECOM. Persones reals, gustos reals.</p>
+  </div>
+  <div class="feature">
+    <span class="feature-icon">🗓️</span>
+    <h3>Agenda cultural</h3>
+    <p>Concerts, estrenes, fires del llibre i activitats culturals en català de la setmana. Per no perdre't res.</p>
+  </div>
+</div>
+
+<!-- ARXIU -->
+<section class="section">
+  <div class="section-header">
+    <h2 class="section-title">Arxiu de números</h2>
+  </div>
+  <div class="archive-list">
+    <div class="archive-item">
+      <div class="archive-left">
+        <span class="archive-num">#012</span>
+        <div><div class="archive-title">Cinc coses que no pots deixar passar aquest abril</div><div class="archive-date">22 abril 2025</div></div>
+      </div>
+      <div class="archive-tags"><span class="archive-tag">Llibres</span><span class="archive-tag">Música</span></div>
+    </div>
+    <div class="archive-item">
+      <div class="archive-left">
+        <span class="archive-num">#011</span>
+        <div><div class="archive-title">El millor de la primavera literària catalana</div><div class="archive-date">15 abril 2025</div></div>
+      </div>
+      <div class="archive-tags"><span class="archive-tag">Llibres</span><span class="archive-tag">Teatre</span></div>
+    </div>
+    <div class="archive-item">
+      <div class="archive-left">
+        <span class="archive-num">#010</span>
+        <div><div class="archive-title">Especial Sant Jordi: llegiu en català</div><div class="archive-date">8 abril 2025</div></div>
+      </div>
+      <div class="archive-tags"><span class="archive-tag">Sant Jordi</span><span class="archive-tag">Especial</span></div>
+    </div>
+    <div class="archive-item">
+      <div class="archive-left">
+        <span class="archive-num">#009</span>
+        <div><div class="archive-title">Podcasts catalans que et canviaran la vida</div><div class="archive-date">1 abril 2025</div></div>
+      </div>
+      <div class="archive-tags"><span class="archive-tag">Podcasts</span></div>
+    </div>
+    <div class="archive-item">
+      <div class="archive-left">
+        <span class="archive-num">#008</span>
+        <div><div class="archive-title">Música catalana per escoltar a la primavera</div><div class="archive-date">25 març 2025</div></div>
+      </div>
+      <div class="archive-tags"><span class="archive-tag">Música</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="cta-final">
+  <span class="tag">Cada dimarts a les 9h</span>
+  <h2>No te la perdis <em>cap setmana.</em></h2>
+  <p>Més de 800 persones ja la reben. Uneix-t'hi.</p>
+  <div class="subscribe-form-dark">
+    <input type="email" id="email2" placeholder="tu@exemple.cat">
+    <button onclick="subscribe('email2', 'msg2')">Subscriu-me</button>
+  </div>
+  <div class="success-msg" id="msg2" style="color: var(--salmon-light); margin-top: 0.75rem; text-align:center;">✓ Perfecte! Et veurem el proper dimarts.</div>
+</section>
+
+<footer>
+  <a href="index.html" class="footer-logo">RECO<span>M</span></a>
+  <div class="footer-copy">Cultura catalana recomanada per persones reals · 2025</div>
+</footer>
+
+<script>
+  function subscribe(inputId, msgId) {
+    const val = document.getElementById(inputId).value;
+    if (val && val.includes('@')) {
+      document.getElementById(inputId).value = '';
+      document.getElementById(msgId).style.display = 'block';
+    }
+  }
+</script>
+</body>
+</html>
